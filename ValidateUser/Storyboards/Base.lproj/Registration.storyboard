@@ -24,18 +24,17 @@
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1ju-Qh-HgJ">
-                                                <rect key="frame" x="121.66666666666669" y="80.666666666666671" width="150" height="148.66666666666669"/>
+                                                <rect key="frame" x="121.66666666666669" y="120.66666666666666" width="150" height="118.66666666666669"/>
                                                 <color key="tintColor" name="BottomGradient"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="150" id="M88-ja-tfB"/>
+                                                    <constraint firstAttribute="height" constant="120" id="M88-ja-tfB"/>
                                                     <constraint firstAttribute="width" constant="150" id="dpG-ER-iKT"/>
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" role="primary" translatesAutoresizingMaskIntoConstraints="NO" id="EF7-IH-Ydh">
-                                                <rect key="frame" x="144" y="190" width="105" height="25"/>
+                                                <rect key="frame" x="148.66666666666666" y="200" width="96" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="LQq-mU-h2K"/>
-                                                    <constraint firstAttribute="width" constant="105" id="dSr-gM-pqQ"/>
                                                 </constraints>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Add Photo" cornerStyle="capsule" titleAlignment="center">
@@ -46,11 +45,20 @@
                                                     <action selector="onPressAddPhotot:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cVg-N0-VUu"/>
                                                 </connections>
                                             </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="WcQ-n4-WuS">
+                                                <rect key="frame" x="20" y="270" width="353" height="227"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </stackView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="EF7-IH-Ydh" firstAttribute="centerX" secondItem="UYI-Cr-Fr5" secondAttribute="centerX" id="5A9-y2-TRf"/>
                                             <constraint firstItem="EF7-IH-Ydh" firstAttribute="top" secondItem="1ju-Qh-HgJ" secondAttribute="bottom" constant="-40" id="Dhy-B9-moh"/>
-                                            <constraint firstItem="1ju-Qh-HgJ" firstAttribute="top" secondItem="UYI-Cr-Fr5" secondAttribute="top" constant="80" id="ZOf-IH-zJu"/>
+                                            <constraint firstItem="WcQ-n4-WuS" firstAttribute="centerX" secondItem="UYI-Cr-Fr5" secondAttribute="centerX" id="EuS-4A-4uO"/>
+                                            <constraint firstItem="WcQ-n4-WuS" firstAttribute="top" secondItem="1ju-Qh-HgJ" secondAttribute="bottom" constant="30" id="Sd2-xp-YNi"/>
+                                            <constraint firstAttribute="bottom" secondItem="WcQ-n4-WuS" secondAttribute="bottom" constant="355" id="TBP-bi-6mv"/>
+                                            <constraint firstAttribute="trailing" secondItem="WcQ-n4-WuS" secondAttribute="trailing" constant="20" id="YpX-nX-S07"/>
+                                            <constraint firstItem="1ju-Qh-HgJ" firstAttribute="top" secondItem="UYI-Cr-Fr5" secondAttribute="top" constant="120" id="ZOf-IH-zJu"/>
+                                            <constraint firstItem="WcQ-n4-WuS" firstAttribute="leading" secondItem="UYI-Cr-Fr5" secondAttribute="leading" constant="20" id="abP-Yr-gfK"/>
                                             <constraint firstItem="1ju-Qh-HgJ" firstAttribute="centerX" secondItem="UYI-Cr-Fr5" secondAttribute="centerX" id="eHP-Z3-NGf"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
