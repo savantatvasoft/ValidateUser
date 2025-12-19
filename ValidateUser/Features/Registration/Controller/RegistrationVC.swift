@@ -9,13 +9,16 @@ import UIKit
 
 class RegistrationVC: UIViewController {
 
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         print("✅ RegistrationVC has loaded successfully!")
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func onPressAddPhotot(_ sender: Any) {
+        print("tabbed heree")
+    }
     /*
     // MARK: - Navigation
 

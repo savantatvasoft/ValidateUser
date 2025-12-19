@@ -21,31 +21,37 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UYI-Cr-Fr5">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="1200"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JYt-Ns-uAg">
-                                                <rect key="frame" x="8" y="8" width="377" height="128"/>
-                                                <color key="backgroundColor" systemColor="systemBrownColor"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1ju-Qh-HgJ">
+                                                <rect key="frame" x="121.66666666666669" y="80.666666666666671" width="150" height="148.66666666666669"/>
+                                                <color key="tintColor" name="BottomGradient"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="i8V-OB-HqM"/>
+                                                    <constraint firstAttribute="height" constant="150" id="M88-ja-tfB"/>
+                                                    <constraint firstAttribute="width" constant="150" id="dpG-ER-iKT"/>
                                                 </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9g6-r7-kYf">
-                                                <rect key="frame" x="8" y="1064" width="377" height="128"/>
-                                                <color key="backgroundColor" systemColor="systemPinkColor"/>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" role="primary" translatesAutoresizingMaskIntoConstraints="NO" id="EF7-IH-Ydh">
+                                                <rect key="frame" x="144" y="190" width="105" height="25"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="128" id="3YZ-im-9kO"/>
+                                                    <constraint firstAttribute="height" constant="25" id="LQq-mU-h2K"/>
+                                                    <constraint firstAttribute="width" constant="105" id="dSr-gM-pqQ"/>
                                                 </constraints>
-                                            </view>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="filled" title="Add Photo" cornerStyle="capsule" titleAlignment="center">
+                                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="14"/>
+                                                    <color key="baseBackgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="onPressAddPhotot:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cVg-N0-VUu"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="9g6-r7-kYf" firstAttribute="leading" secondItem="UYI-Cr-Fr5" secondAttribute="leading" constant="8" id="4VI-Tq-kY1"/>
-                                            <constraint firstItem="JYt-Ns-uAg" firstAttribute="leading" secondItem="UYI-Cr-Fr5" secondAttribute="leading" constant="8" id="OuW-qR-2Qq"/>
-                                            <constraint firstAttribute="trailing" secondItem="9g6-r7-kYf" secondAttribute="trailing" constant="8" id="Q2h-Eb-Ba5"/>
-                                            <constraint firstItem="JYt-Ns-uAg" firstAttribute="top" secondItem="UYI-Cr-Fr5" secondAttribute="top" constant="8" id="SR0-dO-RIH"/>
-                                            <constraint firstAttribute="trailing" secondItem="JYt-Ns-uAg" secondAttribute="trailing" constant="8" id="g8n-bM-th7"/>
-                                            <constraint firstAttribute="height" constant="1200" id="ld7-6I-FIy"/>
-                                            <constraint firstAttribute="bottom" secondItem="9g6-r7-kYf" secondAttribute="bottom" constant="8" id="vJt-s7-eAl"/>
+                                            <constraint firstItem="EF7-IH-Ydh" firstAttribute="centerX" secondItem="UYI-Cr-Fr5" secondAttribute="centerX" id="5A9-y2-TRf"/>
+                                            <constraint firstItem="EF7-IH-Ydh" firstAttribute="top" secondItem="1ju-Qh-HgJ" secondAttribute="bottom" constant="-40" id="Dhy-B9-moh"/>
+                                            <constraint firstItem="1ju-Qh-HgJ" firstAttribute="top" secondItem="UYI-Cr-Fr5" secondAttribute="top" constant="80" id="ZOf-IH-zJu"/>
+                                            <constraint firstItem="1ju-Qh-HgJ" firstAttribute="centerX" secondItem="UYI-Cr-Fr5" secondAttribute="centerX" id="eHP-Z3-NGf"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
@@ -66,9 +72,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="UUF-LN-RuY" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="1Dk-mJ-Shg"/>
-                            <constraint firstItem="UUF-LN-RuY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="41y-iP-a9Y"/>
+                            <constraint firstItem="UUF-LN-RuY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="41y-iP-a9Y"/>
                             <constraint firstItem="UUF-LN-RuY" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="AAV-yC-t6b"/>
                             <constraint firstItem="UYI-Cr-Fr5" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="JzL-Ks-SxX"/>
+                            <constraint firstItem="UYI-Cr-Fr5" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="P3x-Fc-VQS"/>
                             <constraint firstAttribute="bottom" secondItem="UUF-LN-RuY" secondAttribute="bottom" id="PNn-vN-9ha"/>
                             <constraint firstItem="UUF-LN-RuY" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="R8R-N3-q50"/>
                             <constraint firstItem="UUF-LN-RuY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="hly-bW-fiL"/>
@@ -82,7 +89,6 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <size key="freeformSize" width="393" height="852"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -90,6 +96,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="person.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="BottomGradient">
             <color red="0.84313725490196079" green="0.84313725490196079" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -101,9 +108,6 @@
         </systemColor>
         <systemColor name="systemBrownColor">
             <color red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
