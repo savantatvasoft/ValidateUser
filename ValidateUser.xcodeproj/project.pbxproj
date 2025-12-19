@@ -14,7 +14,7 @@
 		FB62B5532EF50E3D0062699B /* Exceptions for "ValidateUser" folder in "ValidateUser" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				Resources/Info.plist,
 			);
 			target = FB62B5402EF50E3C0062699B /* ValidateUser */;
 		};
@@ -147,7 +147,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CRTHLKVC56;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ValidateUser/Info.plist;
+				INFOPLIST_FILE = ValidateUser/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -179,7 +179,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CRTHLKVC56;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ValidateUser/Info.plist;
+				INFOPLIST_FILE = ValidateUser/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
