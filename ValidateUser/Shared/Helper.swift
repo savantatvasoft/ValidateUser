@@ -16,6 +16,7 @@ struct ValidationResult {
 }
 
 class Validator {
+    
     static func isValidName(_ text: String?) -> ValidationResult {
         let name = text?.trimmingCharacters(in: .whitespaces) ?? ""
         if name.isEmpty { return ValidationResult(isValid: false, error: "Name is required") }

@@ -2,26 +2,17 @@ import UIKit
 
 class RegistrationVC: UIViewController {
 
-    @IBOutlet weak var nameField: InputTextField!
-    @IBOutlet weak var emailField: InputTextField!
-    @IBOutlet weak var dobField: InputTextField!
+    @IBOutlet weak var username: InputField!
+    
+    @IBOutlet weak var userEmail: InputField!
+    @IBOutlet weak var userdob: InputField!
 
-    @IBOutlet weak var nameFieldHeigthConstraints: NSLayoutConstraint!
-    
-    @IBOutlet weak var dobFieldHeightConstraints: NSLayoutConstraint!
-    
-    @IBOutlet weak var emailFieldHeightConstraints: NSLayoutConstraint!
-    
     private let datePicker = UIDatePicker()
-    
-//    private var nameFieldHeightConstraint: NSLayoutConstraint?
-//    private var emailHeightConstraint: NSLayoutConstraint?
-//    private var dobHeightConstraint: NSLayoutConstraint?
 
     var isFormValid: Bool {
-        guard let name = nameField?.textField.text,
-              let email = emailField?.textField.text,
-              let dob = dobField?.textField.text else { return false }
+        guard let name = username.textField.text,
+              let email = userEmail.textField.text,
+              let dob = userdob.textField.text else { return false }
               
         return Validator.isValidName(name).isValid &&
                Validator.isValidEmail(email).isValid &&
@@ -31,53 +22,20 @@ class RegistrationVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupKeyboardDismis()
-        setupConstraints()
-    }
+        setupKeyboardDismiss()
     
-    private func setupConstraints() {
-        //        nameField.translatesAutoresizingMaskIntoConstraints = false
-       
-//        nameField.translatesAutoresizingMaskIntoConstraints = false
-//        nameFieldHeightConstraint = nameField.heightAnchor.constraint(equalToConstant: 40)
-//        nameFieldHeightConstraint?.isActive = true
-//        
-//       
-//        emailField.translatesAutoresizingMaskIntoConstraints = false
-//        emailHeightConstraint = emailField.heightAnchor.constraint(equalToConstant: 40)
-//        emailHeightConstraint?.isActive = true
-//        
-//       
-//        dobField.translatesAutoresizingMaskIntoConstraints = false
-//        dobHeightConstraint = dobField.heightAnchor.constraint(equalToConstant: 40)
-//        dobHeightConstraint?.isActive = true
-    }
-    
-    private func setupKeyboardDismis() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        
-        // Setting this to false ensures that button taps or other
-        // interactions still work while the keyboard is up
-        tap.cancelsTouchesInView = false
-        
-        view.addGestureRecognizer(tap)
-    }
-
-    @objc private func dismissKeyboard() {
-        view.endEditing(true)
     }
 
     private func setupUI() {
         setupDatePicker()
         
-        // --- Placeholder Functionality ---
-        nameField?.setPlaceholder("Enter Name")
-        emailField?.setPlaceholder("Enter Email")
-        dobField?.setPlaceholder("DD/MM/YYYY")
+        // 1. Setup Placeholders
+        username.setPlaceholder("Enter Name")
+        userEmail.setPlaceholder("Enter Email")
+        userdob.setPlaceholder("DD/MM/YYYY")
         
-        // Using compactMap to safely handle any nil outlets
-        let fields = [nameField, emailField, dobField].compactMap { $0 }
-        
+        // 2. Setup Delegates and Target actions
+        let fields = [username, userEmail, userdob].compactMap { $0 }
         fields.forEach { field in
             field.textField.delegate = self
             field.textField.addTarget(self, action: #selector(onTyping(_:)), for: .editingChanged)
@@ -86,44 +44,37 @@ class RegistrationVC: UIViewController {
 
     @objc private func onTyping(_ textField: UITextField) {
         validate(textField: textField, isSilent: false)
-        print("Form Status: \(isFormValid ? "Ready" : "Invalid")")
     }
 
     private func validate(textField: UITextField, isSilent: Bool) {
         let text = textField.text ?? ""
         
         switch textField {
-        case nameField?.textField:
+        case username.textField:
             let result = Validator.isValidName(text)
-            let hasError = !isSilent && !result.isValid
-            // Safe access using optional chaining
-            nameField?.setErrorState(!isSilent && !result.isValid, errorMessage: result.error)
-            updateFieldHeight(hasError: hasError)
+            username.setErrorState(!isSilent && !result.isValid, errorMessage: result.error)
             
-        case emailField?.textField:
+        case userEmail.textField:
             let result = Validator.isValidEmail(text)
-            emailField?.setErrorState(!isSilent && !result.isValid, errorMessage: result.error)
+            userEmail.setErrorState(!isSilent && !result.isValid, errorMessage: result.error)
             
-        case dobField?.textField:
+        case userdob.textField:
             let isEmpty = text.isEmpty
-            dobField?.setErrorState(!isSilent && isEmpty, errorMessage: "Date of birth is required")
+            userdob.setErrorState(!isSilent && isEmpty, errorMessage: "Date of birth is required")
             
         default: break
         }
     }
-    
-    private func updateFieldHeight(hasError: Bool) {
-            // When there is an error, we increase the height to fit the label.
-            // If you specifically want it shorter (40) on error, change the value below.
-            let targetHeight: CGFloat = hasError ? 40 : 40
-        
-            
-            UIView.animate(withDuration: 0.3) {
-//                self.nameFieldHeightConstraint?.constant = targetHeight
-                self.nameFieldHeigthConstraints.constant = targetHeight
-                self.view.layoutIfNeeded()
-            }
-        }
+
+    private func setupKeyboardDismiss() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 
 // MARK: - Date Picker & Delegate
@@ -134,28 +85,37 @@ extension RegistrationVC: UITextFieldDelegate {
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.maximumDate = Date()
         
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
+        // Create the toolbar
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
+        toolbar.barStyle = .default
+        toolbar.isTranslucent = true
+        toolbar.tintColor = .systemBlue // Standard Apple Blue
         
-        let done = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed))
-        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        // Create Buttons
+        // 'Cancel' on the left (Leading)
         let cancel = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelPressed))
         
-        toolbar.setItems([cancel, space, done], animated: false)
+        // Flexible space to push buttons to the edges
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
-        dobField?.textField.inputView = datePicker
-        dobField?.textField.inputAccessoryView = toolbar
+        // 'Done' on the right (Trailing)
+        let done = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed))
+        
+        // Apply items to toolbar
+        toolbar.setItems([cancel, space, done], animated: false)
+        toolbar.isUserInteractionEnabled = true
+        
+        // Assign to the text field
+        userdob.textField.inputView = datePicker
+        userdob.textField.inputAccessoryView = toolbar
     }
 
     @objc private func donePressed() {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
-        dobField?.textField.text = formatter.string(from: datePicker.date)
+        userdob.textField.text = formatter.string(from: datePicker.date)
         view.endEditing(true)
-        
-        if let textField = dobField?.textField {
-            validate(textField: textField, isSilent: false)
-        }
+        validate(textField: userdob.textField, isSilent: false)
     }
 
     @objc private func cancelPressed() {
@@ -163,13 +123,14 @@ extension RegistrationVC: UITextFieldDelegate {
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField == nameField?.textField {
+        if textField == username.textField {
             let currentText = textField.text ?? ""
-            guard let stringRange = Range(range, in: currentText) else { return false }
-            let updatedText = currentText.replacingCharacters(in: stringRange, with: string)
-            return updatedText.count <= 20
+            return (currentText.count + string.count - range.length) <= 20
         }
         return true
     }
 }
+
+
+
 
