@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InputTextField" customModule="ValidateUser" customModuleProvider="target">
             <connections>
-                <outlet property="containerView" destination="iN0-l3-epB" id="thu-jh-GoB"/>
+                <outlet property="containerView" destination="iN0-l3-epB" id="gnl-3i-4nX"/>
                 <outlet property="rightImage" destination="ooE-Oc-tGe" id="RYx-kg-yS3"/>
                 <outlet property="textField" destination="oBb-DO-L3e" id="tY4-Vb-x11"/>
             </connections>
@@ -20,22 +20,23 @@
             <rect key="frame" x="0.0" y="0.0" width="705" height="207"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5Cd-Ej-7cT">
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5Cd-Ej-7cT">
                     <rect key="frame" x="0.0" y="0.0" width="705" height="207"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Eneter Text Here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oBb-DO-L3e">
-                            <rect key="frame" x="0.0" y="0.0" width="625" height="207"/>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Text Here" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oBb-DO-L3e">
+                            <rect key="frame" x="0.0" y="94.333333333333329" width="655" height="18.666666666666671"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                         </textField>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tick_Green" translatesAutoresizingMaskIntoConstraints="NO" id="ooE-Oc-tGe">
-                            <rect key="frame" x="645" y="0.0" width="60" height="207"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" image="Tick_Green" translatesAutoresizingMaskIntoConstraints="NO" id="ooE-Oc-tGe">
+                            <rect key="frame" x="665" y="83.666666666666671" width="40" height="40"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="60" id="vVQ-Kf-vBc"/>
+                                <constraint firstAttribute="height" constant="40" id="oiU-MK-Oxj"/>
+                                <constraint firstAttribute="width" constant="40" id="vVQ-Kf-vBc"/>
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -47,6 +48,17 @@
                 <constraint firstAttribute="trailing" secondItem="5Cd-Ej-7cT" secondAttribute="trailing" id="opB-3j-d5Z"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="borderColorIB">
+                    <color key="value" red="0.291540244" green="0.14081312260000001" blue="0.047444571269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="borderWidthIB">
+                    <real key="value" value="2"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusIB">
+                    <real key="value" value="10"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="-216.03053435114504" y="-151.05633802816902"/>
         </view>
     </objects>
