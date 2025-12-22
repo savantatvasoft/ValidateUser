@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UYI-Cr-Fr5">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="400"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="1ju-Qh-HgJ">
                                                 <rect key="frame" x="121.66666666666669" y="120.66666666666666" width="150" height="118.66666666666669"/>
@@ -45,40 +45,45 @@
                                                     <action selector="onPressAddPhotot:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cVg-N0-VUu"/>
                                                 </connections>
                                             </button>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1dY-CU-qbn">
-                                                <rect key="frame" x="16" y="300" width="361" height="100"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1dY-CU-qbn">
+                                                <rect key="frame" x="16" y="300" width="361" height="140"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzH-Ee-Idy" customClass="InputTextField" customModule="ValidateUser" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="40"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="Fiu-0O-2pp"/>
+                                                            <constraint firstAttribute="height" constant="40" id="sTa-SE-tKc"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColorIB">
-                                                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidthIB">
-                                                                <real key="value" value="1"/>
-                                                            </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusIB">
                                                                 <real key="value" value="10"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="poL-ym-QDz" customClass="InputTextField" customModule="ValidateUser" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="60" width="361" height="40"/>
+                                                        <rect key="frame" x="0.0" y="50" width="361" height="40"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="ys0-6E-dGI"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zdQ-rh-vtC" customClass="InputTextField" customModule="ValidateUser" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="100" width="361" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="tRW-Ah-wLd"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusIB">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="poL-ym-QDz" firstAttribute="height" secondItem="wzH-Ee-Idy" secondAttribute="height" id="Y6f-FZ-jwe"/>
-                                                </constraints>
                                             </stackView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="EF7-IH-Ydh" firstAttribute="centerX" secondItem="UYI-Cr-Fr5" secondAttribute="centerX" id="5A9-y2-TRf"/>
                                             <constraint firstItem="EF7-IH-Ydh" firstAttribute="top" secondItem="1ju-Qh-HgJ" secondAttribute="bottom" constant="-40" id="Dhy-B9-moh"/>
-                                            <constraint firstAttribute="bottom" secondItem="1dY-CU-qbn" secondAttribute="bottom" id="Lzi-t4-cmW"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="1dY-CU-qbn" secondAttribute="bottom" id="Lzi-t4-cmW"/>
                                             <constraint firstItem="1dY-CU-qbn" firstAttribute="top" secondItem="1ju-Qh-HgJ" secondAttribute="bottom" constant="60" id="ZBX-BU-Xvs"/>
                                             <constraint firstItem="1ju-Qh-HgJ" firstAttribute="top" secondItem="UYI-Cr-Fr5" secondAttribute="top" constant="120" id="ZOf-IH-zJu"/>
                                             <constraint firstAttribute="trailing" secondItem="1dY-CU-qbn" secondAttribute="trailing" constant="16" id="ct6-JO-gKx"/>
@@ -123,7 +128,11 @@
                     </view>
                     <connections>
                         <outlet property="dobField" destination="poL-ym-QDz" id="gfZ-fF-TkJ"/>
+                        <outlet property="dobFieldHeightConstraints" destination="ys0-6E-dGI" id="aga-j1-FPM"/>
+                        <outlet property="emailField" destination="zdQ-rh-vtC" id="U5b-eC-w7y"/>
+                        <outlet property="emailFieldHeightConstraints" destination="tRW-Ah-wLd" id="PPR-xn-fJV"/>
                         <outlet property="nameField" destination="wzH-Ee-Idy" id="gqW-pb-uCG"/>
+                        <outlet property="nameFieldHeigthConstraints" destination="sTa-SE-tKc" id="syI-I7-xg8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
