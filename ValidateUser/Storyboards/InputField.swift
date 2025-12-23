@@ -9,6 +9,7 @@ class InputField: UIView {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var rightImage: UIImageView!
     @IBOutlet weak var errorText: UILabel!
+    @IBOutlet weak var leftImage: UIImageView!
     
     // MARK: - Init
     override init(frame: CGRect) {
@@ -29,50 +30,71 @@ class InputField: UIView {
         xibView.frame = self.bounds
         xibView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(xibView)
+    }
+
+    // Use awakeFromNib to ensure outlets are fully connected before hiding
+    override func awakeFromNib() {
+        super.awakeFromNib()
         setupUI()
     }
     
     private func setupUI() {
+        
+        if let stackView = leftImage.superview as? UIStackView {
+                stackView.isLayoutMarginsRelativeArrangement = true
+                stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 0)
+            
+        }
+        
         errorContainer.isHidden = true
         rightImage.isHidden = true
+        
+        // Explicitly hide and remove image to force Stack View collapse
+        leftImage.isHidden = true
+        leftImage.image = nil
     }
     
     // MARK: - Configuration Functions
+    
     func setPlaceholder(_ text: String) {
         textField.placeholder = text
     }
     
-    func setEditable(_ isEditable: Bool) {
-        textField.isEnabled = isEditable
-        textFieldContainerView.alpha = isEditable ? 1.0 : 0.6
+    func setLeftImage(_ image: UIImage?) {
+        if let img = image {
+            leftImage.image = img
+            leftImage.isHidden = false
+        } else {
+            leftImage.isHidden = true
+            leftImage.image = nil
+        }
+        // Force the Stack View to re-layout immediately
+        self.layoutIfNeeded()
     }
     
-    // MARK: - Validation & UI Update
     func setErrorState(_ hasError: Bool, errorMessage: String? = nil) {
         DispatchQueue.main.async {
             UIView.animate(withDuration: 0.3) {
-                // 1. Set Error Text
                 self.errorText.text = errorMessage
-                
-                // 2. Toggle Error Container
                 self.errorContainer.isHidden = !hasError
                 
-                // 3. Image Logic
                 let isTextEmpty = self.textField.text?.isEmpty ?? true
                 if isTextEmpty {
                     self.rightImage.isHidden = true
                 } else {
                     self.rightImage.isHidden = false
-                    // Using your requested naming: Warning_Red vs Tick_Green
                     let imageName = hasError ? "Warning_Red" : "Tick_Green"
                     self.rightImage.image = UIImage(named: imageName)
                 }
                 
-                // 4. Layout Refresh
-                self.invalidateIntrinsicContentSize()
                 self.layoutIfNeeded()
-                self.superview?.layoutIfNeeded()
             }
         }
     }
+    
+    func setAsLink(_ isLink: Bool) {
+        textField.textColor = isLink ? .systemBlue : .label
+        // Optionally add underline for a more classic link look
+    }
+    
 }
