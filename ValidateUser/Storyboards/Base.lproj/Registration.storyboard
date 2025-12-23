@@ -187,6 +187,71 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vb7-m9-uDN">
+                                                        <rect key="frame" x="0.0" y="399" width="337" height="40"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BiS-F6-biz">
+                                                                <rect key="frame" x="0.0" y="8" width="24" height="24"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="24" id="c8d-pH-Jan"/>
+                                                                    <constraint firstAttribute="height" constant="24" id="vWa-Yo-Juw"/>
+                                                                </constraints>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" title="Button" image="square"/>
+                                                                <connections>
+                                                                    <action selector="onPressCheckButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Su3-tT-MID"/>
+                                                                </connections>
+                                                            </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I agree to the Terms &amp; Conditions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="poo-nC-9t4">
+                                                                <rect key="frame" x="34" y="11.666666666666629" width="303" height="17"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="PcY-Uo-mVk"/>
+                                                            <constraint firstItem="poo-nC-9t4" firstAttribute="leading" secondItem="BiS-F6-biz" secondAttribute="trailing" constant="10" id="QSq-qB-aWt"/>
+                                                            <constraint firstItem="BiS-F6-biz" firstAttribute="leading" secondItem="Vb7-m9-uDN" secondAttribute="leading" id="kVr-fC-EVc"/>
+                                                            <constraint firstAttribute="trailing" secondItem="poo-nC-9t4" secondAttribute="trailing" id="ksY-6u-dT7"/>
+                                                            <constraint firstItem="poo-nC-9t4" firstAttribute="centerY" secondItem="Vb7-m9-uDN" secondAttribute="centerY" id="pP5-1N-KxQ"/>
+                                                            <constraint firstItem="BiS-F6-biz" firstAttribute="centerY" secondItem="Vb7-m9-uDN" secondAttribute="centerY" id="pgZ-uQ-kvf"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z4K-xd-Ln5">
+                                                        <rect key="frame" x="0.0" y="459" width="337" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="45" id="XnZ-sT-Lzs"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Register" cornerStyle="fixed">
+                                                            <backgroundConfiguration key="background">
+                                                                <color key="backgroundColor" name="AccentColor"/>
+                                                            </backgroundConfiguration>
+                                                            <fontDescription key="titleFontDescription" name="ArialHebrew-Bold" family="Arial Hebrew" pointSize="16"/>
+                                                            <color key="baseBackgroundColor" name="AccentColor"/>
+                                                        </buttonConfiguration>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                <integer key="value" value="7"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="onPressRegister:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H4y-4E-6MJ"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -198,11 +263,17 @@
                                                     <constraint firstAttribute="bottom" secondItem="W2h-L6-N0S" secondAttribute="bottom" constant="272" id="Mng-kt-fLM"/>
                                                     <constraint firstItem="Dp9-kB-MZ3" firstAttribute="top" secondItem="4WK-SX-UoR" secondAttribute="bottom" constant="10" id="RYl-IM-cKG"/>
                                                     <constraint firstAttribute="trailing" secondItem="O9G-zR-yFc" secondAttribute="trailing" id="Sna-vl-UFV"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Vb7-m9-uDN" secondAttribute="trailing" id="UPm-fg-89L"/>
                                                     <constraint firstAttribute="trailing" secondItem="4WK-SX-UoR" secondAttribute="trailing" id="V51-zB-LbS"/>
                                                     <constraint firstAttribute="trailing" secondItem="3uL-Is-ySt" secondAttribute="trailing" id="V5e-BQ-KPL"/>
                                                     <constraint firstItem="W2h-L6-N0S" firstAttribute="leading" secondItem="6Gs-T8-rbX" secondAttribute="leading" id="Wgk-bB-OwZ"/>
                                                     <constraint firstItem="3uL-Is-ySt" firstAttribute="leading" secondItem="6Gs-T8-rbX" secondAttribute="leading" id="ZmQ-Rm-n7i"/>
+                                                    <constraint firstItem="Vb7-m9-uDN" firstAttribute="leading" secondItem="6Gs-T8-rbX" secondAttribute="leading" id="atS-tF-Ll3"/>
                                                     <constraint firstAttribute="trailing" secondItem="NU1-dH-DMf" secondAttribute="trailing" id="b02-LH-xTR"/>
+                                                    <constraint firstItem="Vb7-m9-uDN" firstAttribute="top" secondItem="3uL-Is-ySt" secondAttribute="bottom" constant="10" id="cCt-WV-yam"/>
+                                                    <constraint firstItem="Z4K-xd-Ln5" firstAttribute="top" secondItem="Vb7-m9-uDN" secondAttribute="bottom" constant="20" id="d5e-0r-dNa"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Z4K-xd-Ln5" secondAttribute="trailing" id="lHW-yT-XOP"/>
+                                                    <constraint firstItem="Z4K-xd-Ln5" firstAttribute="leading" secondItem="6Gs-T8-rbX" secondAttribute="leading" id="nlK-3e-9jp"/>
                                                     <constraint firstItem="4WK-SX-UoR" firstAttribute="leading" secondItem="6Gs-T8-rbX" secondAttribute="leading" id="pLa-hz-fl4"/>
                                                     <constraint firstItem="NU1-dH-DMf" firstAttribute="leading" secondItem="6Gs-T8-rbX" secondAttribute="leading" id="rIv-7Q-0vQ"/>
                                                     <constraint firstAttribute="trailing" secondItem="W2h-L6-N0S" secondAttribute="trailing" id="rOK-NM-Na3"/>
@@ -259,8 +330,11 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <connections>
+                        <outlet property="agreementLabel" destination="poo-nC-9t4" id="pRH-X2-LpE"/>
+                        <outlet property="checkButtonView" destination="BiS-F6-biz" id="pXh-3H-umX"/>
                         <outlet property="descriptionPlaceholderLabel" destination="hgO-8D-Dyv" id="8Mx-3b-wab"/>
                         <outlet property="linkedinUrl" destination="W2h-L6-N0S" id="9Ym-r8-9Mb"/>
+                        <outlet property="registerButttonView" destination="Z4K-xd-Ln5" id="Y6A-ba-4YH"/>
                         <outlet property="userDescriptionTextView" destination="0i8-bf-DQv" id="z1Q-ti-ILf"/>
                         <outlet property="userEmail" destination="4WK-SX-UoR" id="pfi-OV-A5c"/>
                         <outlet property="userPhonenumber" destination="Dp9-kB-MZ3" id="K4W-dp-QPX"/>
@@ -275,6 +349,10 @@
     </scenes>
     <resources>
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="square" width="64" height="64"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="BottomGradient">
             <color red="0.84313725490196079" green="0.84313725490196079" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
