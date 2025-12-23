@@ -335,6 +335,7 @@
                         <outlet property="descriptionPlaceholderLabel" destination="hgO-8D-Dyv" id="8Mx-3b-wab"/>
                         <outlet property="linkedinUrl" destination="W2h-L6-N0S" id="9Ym-r8-9Mb"/>
                         <outlet property="registerButttonView" destination="Z4K-xd-Ln5" id="Y6A-ba-4YH"/>
+                        <outlet property="scrollview" destination="UUF-LN-RuY" id="21g-dd-MFa"/>
                         <outlet property="userDescriptionTextView" destination="0i8-bf-DQv" id="z1Q-ti-ILf"/>
                         <outlet property="userEmail" destination="4WK-SX-UoR" id="pfi-OV-A5c"/>
                         <outlet property="userPhonenumber" destination="Dp9-kB-MZ3" id="K4W-dp-QPX"/>
