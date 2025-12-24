@@ -6,17 +6,14 @@ class RegistrationVC: UIViewController {
     // MARK: - Outlets
     @IBOutlet weak var addPhotoBtn: UIButton!
     @IBOutlet weak var userImageView: UIImageView!
-    
     @IBOutlet weak var username: InputField!
     @IBOutlet weak var userEmail: InputField!
     @IBOutlet weak var userdob: InputField!
     @IBOutlet weak var userPhonenumber: InputField!
     @IBOutlet weak var linkedinUrl: InputField!
-    
     @IBOutlet weak var scrollview: UIScrollView!
     @IBOutlet weak var userDescriptionTextView: UITextView!
     @IBOutlet weak var descriptionPlaceholderLabel: UILabel!
-    
     @IBOutlet weak var agreementLabel: UILabel!
     @IBOutlet weak var checkButtonView: UIButton!
     @IBOutlet weak var registerButttonView: UIButton!
@@ -51,17 +48,16 @@ class RegistrationVC: UIViewController {
     }
 
     private func configureInputFields() {
-        username.setPlaceholder("Enter Name")
-        userEmail.setPlaceholder("Enter Email")
-        userdob.setPlaceholder("DD/MM/YYYY")
-        userPhonenumber.setPlaceholder("Enter 10-digit mobile number")
-        userPhonenumber.textField.keyboardType = .numberPad
+        username.setPlaceholder("reg_ph_name".localized)
+        userEmail.setPlaceholder("reg_ph_email".localized)
+        userdob.setPlaceholder("reg_ph_dob".localized)
+        userPhonenumber.setPlaceholder("reg_ph_phone".localized)
+        linkedinUrl.setPlaceholder("reg_ph_linkedin".localized)
         
-        linkedinUrl.setPlaceholder("LinkedIn Profile URL")
+        userPhonenumber.textField.keyboardType = .numberPad
         linkedinUrl.textField.keyboardType = .URL
         linkedinUrl.textField.autocapitalizationType = .none
         linkedinUrl.setLeftImage(UIImage(named: "linked_In"))
-        
         userDescriptionTextView.delegate = self
         userDescriptionTextView.isScrollEnabled = false
         updatePlaceholderVisibility()
@@ -80,13 +76,12 @@ class RegistrationVC: UIViewController {
         let text = textField.text ?? ""
         
         switch textField {
-        case username.textField: viewModel.user.name = text
-        case userEmail.textField: viewModel.user.email = text
-        case userPhonenumber.textField: viewModel.user.phone = text
-        case linkedinUrl.textField: viewModel.user.linkedinUrl = text
-        default: break
+            case username.textField: viewModel.user.name = text
+            case userEmail.textField: viewModel.user.email = text
+            case userPhonenumber.textField: viewModel.user.phone = text
+            case linkedinUrl.textField: viewModel.user.linkedinUrl = text
+            default: break
         }
-        
         validate(textField: textField, isSilent: false)
         updateRegisterButtonState()
     }
@@ -95,35 +90,28 @@ class RegistrationVC: UIViewController {
         showImageSourceOptions()
     }
 
-
     @IBAction func onPressCheckButton(_ sender: UIButton) {
         sender.isSelected.toggle()
         viewModel.user.isTermsAccepted = sender.isSelected
-        
         let imageName = sender.isSelected ? "Tick_Blue" : "square"
         sender.setImage(UIImage(named: imageName), for: .normal)
-        
         updateRegisterButtonState()
     }
     
     @IBAction func onPressRegister(_ sender: UIButton) {
-        print("Registering User: \(viewModel.user.name)")
-        
         self.performSegue(withIdentifier: "navigateToProfile", sender: self)
     }
 
     // MARK: - Keyboard Handling
     @objc private func keyboardWillShow(notification: NSNotification) {
-        guard let userInfo = notification.userInfo,
-              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         
+        guard let userInfo = notification.userInfo,
+        let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardHeight = keyboardFrame.cgRectValue.height
         let extraPadding: CGFloat = 40
-        
         let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight + extraPadding, right: 0)
         scrollview.contentInset = contentInsets
         scrollview.scrollIndicatorInsets = contentInsets
-        
         if let activeField = findFirstResponder(in: self.view) {
             let rect = activeField.convert(activeField.bounds, to: scrollview)
             scrollview.scrollRectToVisible(rect.insetBy(dx: 0, dy: -extraPadding), animated: true)
@@ -138,23 +126,34 @@ class RegistrationVC: UIViewController {
 
     private func updateRegisterButtonState() {
         let isValid = viewModel.isFormValid
-//        registerButttonView.isEnabled = isValid
+        registerButttonView.isEnabled = isValid
+        
+        // Set the title using your localization helper
+        let buttonTitle = "btn_register".localized
         
         UIView.animate(withDuration: 0.2) {
-            // Handle opacity for the background
+            // We still dim the whole button's alpha to show it's disabled,
+            // but the text inside will stay crisp white.
             self.registerButttonView.alpha = isValid ? 1.0 : 0.5
             
             if var config = self.registerButttonView.configuration {
-            
-                config.imagePlacement = .leading
+                config.title = buttonTitle
+                
+                // 1. Set the base foreground color to white
                 config.baseForegroundColor = .white
-                self.registerButttonView.configuration = config
-                self.registerButttonView.configurationUpdateHandler = { button in
-                    var updatedConfig = button.configuration
-                    updatedConfig?.baseForegroundColor = .white
-                    button.configuration = updatedConfig
+                
+                // 2. Add a Color Transformer (THE FIX)
+                // This forces the color to stay white regardless of button state (Normal or Disabled)
+                config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
+                    var outgoing = incoming
+                    outgoing.foregroundColor = .white
+                    return outgoing
                 }
+                
+                self.registerButttonView.configuration = config
             } else {
+                // Legacy support for older iOS versions
+                self.registerButttonView.setTitle(buttonTitle, for: .normal)
                 self.registerButttonView.setTitleColor(.white, for: .normal)
                 self.registerButttonView.setTitleColor(.white, for: .disabled)
             }
@@ -162,16 +161,14 @@ class RegistrationVC: UIViewController {
     }
 
     private func setupAgreementLabel() {
-        let fullText = "I agree to the Terms and Conditions"
-        let linkText = "Terms and Conditions"
+        let fullText = "reg_terms_full".localized
+        let linkText = "reg_terms_link".localized
         let attributedString = NSMutableAttributedString(string: fullText)
         let range = (fullText as NSString).range(of: linkText)
-        
         if range.location != NSNotFound {
             attributedString.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: range)
             attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 14), range: range)
         }
-        
         agreementLabel.attributedText = attributedString
         agreementLabel.isUserInteractionEnabled = true
         agreementLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTermsTap(_:))))
@@ -187,7 +184,7 @@ class RegistrationVC: UIViewController {
         case userPhonenumber.textField:
             userPhonenumber.setErrorState(!isSilent && !Validator.isValidMobile(text).isValid, errorMessage: Validator.isValidMobile(text).error)
         case userdob.textField:
-            userdob.setErrorState(!isSilent && text.isEmpty, errorMessage: "Date of birth is required")
+            userdob.setErrorState(!isSilent && text.isEmpty, errorMessage: "reg_err_dob".localized)
         case linkedinUrl.textField:
             let result = Validator.isValidURL(text)
             linkedinUrl.setErrorState(!isSilent && !result, errorMessage: result ? nil : "Invalid LinkedIn URL")
@@ -212,10 +209,9 @@ class RegistrationVC: UIViewController {
     }
 
     @objc private func donePressed() {
-        let dateString = viewModel.formatDate(datePicker.date)
+        let dateString = datePicker.date.toString()
         userdob.textField.text = dateString
         viewModel.user.dob = dateString
-        
         view.endEditing(true)
         validate(textField: userdob.textField, isSilent: false)
         updateRegisterButtonState()
@@ -283,24 +279,15 @@ class RegistrationVC: UIViewController {
         config.filter = .images
         config.selectionLimit = 1
         let picker = PHPickerViewController(configuration: config)
-        picker.delegate = self // Correctly matches PHPickerViewControllerDelegate
+        picker.delegate = self
         present(picker, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Check if this is the correct segue
         if segue.identifier == "navigateToProfile" {
-            
-            // Ensure the destination is ProfileVC
             if let destinationVC = segue.destination as? ProfileVC {
                 let registrationData = viewModel.user
-                
-                print("use data : ",registrationData)
-                
-                // 2. Create the ProfileViewModel using that data
                 let profileVM = ProfileViewModel(data: registrationData)
-                
-                // 3. Inject the ViewModel into the destination view controller
                 destinationVC.viewModel = profileVM
             }
         }
@@ -309,6 +296,7 @@ class RegistrationVC: UIViewController {
 
 // MARK: - Extensions
 extension RegistrationVC: UITextFieldDelegate, UITextViewDelegate {
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let rect = textField.convert(textField.bounds, to: scrollview)
         scrollview.scrollRectToVisible(rect.insetBy(dx: 0, dy: -20), animated: true)
@@ -326,8 +314,7 @@ extension RegistrationVC: UITextFieldDelegate, UITextViewDelegate {
 }
 
 extension RegistrationVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate {
-    
-    // Handle Gallery (PHPicker)
+
         func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
             picker.dismiss(animated: true)
             
@@ -337,11 +324,8 @@ extension RegistrationVC: UIImagePickerControllerDelegate, UINavigationControlle
                 DispatchQueue.main.async {
                     if let selectedImage = image as? UIImage {
                         self?.userImageView.image = selectedImage
-                        
-                        // CONVERT AND SYNC
                         let base64String = self?.convertImageToBase64String(selectedImage)
                         self?.viewModel.user.userImage = base64String
-                        
                         self?.updateRegisterButtonState()
                     }
                 }
@@ -354,7 +338,6 @@ extension RegistrationVC: UIImagePickerControllerDelegate, UINavigationControlle
             userImageView.image = selectedImage
             
             if let image = selectedImage {
-                // CONVERT AND SYNC
                 viewModel.user.userImage = convertImageToBase64String(image)
             }
             

@@ -43,8 +43,8 @@ class ProfileVC: UIViewController {
         userLinkedInUrl.image.image = UIImage(named: "linked_In")
 //        userLinkedInUrl.image.image = UIImage(named: "About_Us")
         
-        // 3. Styling
-        userImage.layer.cornerRadius = userImage.frame.height / 2
-        userImage.clipsToBounds = true
+//        // 3. Styling
+//        userImage.layer.cornerRadius = userImage.frame.height / 2
+//        userImage.clipsToBounds = true
     }
 }

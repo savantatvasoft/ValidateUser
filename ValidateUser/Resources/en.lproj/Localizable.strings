@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  ValidateUser
+
+  Created by MACM72 on 24/12/25.
+  
+*/
+/* Registration Screen */
+/* Registration Screen */
+"reg_ph_name" = "Enter Name";
+"reg_ph_email" = "Enter Email";
+"reg_ph_dob" = "DD/MM/YYYY";
+"reg_ph_phone" = "Enter 10-digit mobile number";
+"reg_ph_linkedin" = "LinkedIn Profile URL";
+
+"reg_err_dob" = "Date of birth is required";
+"reg_err_linkedin" = "Invalid LinkedIn URL";
+
+"reg_terms_full" = "I agree to the Terms and Conditions";
+"reg_terms_link" = "Terms and Conditions";
+"btn_register" = "Register";

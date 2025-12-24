@@ -24,4 +24,8 @@ extension String {
         }
         return false
     }
+    
+    var localized: String {
+            return NSLocalizedString(self, comment: "")
+    }
 }
