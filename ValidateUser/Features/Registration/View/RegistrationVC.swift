@@ -108,6 +108,8 @@ class RegistrationVC: UIViewController {
     
     @IBAction func onPressRegister(_ sender: UIButton) {
         print("Registering User: \(viewModel.user.name)")
+        
+        self.performSegue(withIdentifier: "navigateToProfile", sender: self)
     }
 
     // MARK: - Keyboard Handling
@@ -136,31 +138,25 @@ class RegistrationVC: UIViewController {
 
     private func updateRegisterButtonState() {
         let isValid = viewModel.isFormValid
-        registerButttonView.isEnabled = isValid
+//        registerButttonView.isEnabled = isValid
         
         UIView.animate(withDuration: 0.2) {
             // Handle opacity for the background
             self.registerButttonView.alpha = isValid ? 1.0 : 0.5
             
             if var config = self.registerButttonView.configuration {
-                // This is the key: Create a "Color Transformer" to force white
-                // even when the button state is .disabled
+            
                 config.imagePlacement = .leading
                 config.baseForegroundColor = .white
-                
-                // Re-apply the configuration
                 self.registerButttonView.configuration = config
-                
-                // For newer iOS versions using Configurations:
                 self.registerButttonView.configurationUpdateHandler = { button in
                     var updatedConfig = button.configuration
-                    updatedConfig?.baseForegroundColor = .white // Force white always
+                    updatedConfig?.baseForegroundColor = .white
                     button.configuration = updatedConfig
                 }
             } else {
-                // Fallback for older UIButton styles (Legacy)
                 self.registerButttonView.setTitleColor(.white, for: .normal)
-                self.registerButttonView.setTitleColor(.white, for: .disabled) // Force white here
+                self.registerButttonView.setTitleColor(.white, for: .disabled)
             }
         }
     }
@@ -289,6 +285,25 @@ class RegistrationVC: UIViewController {
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = self // Correctly matches PHPickerViewControllerDelegate
         present(picker, animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Check if this is the correct segue
+        if segue.identifier == "navigateToProfile" {
+            
+            // Ensure the destination is ProfileVC
+            if let destinationVC = segue.destination as? ProfileVC {
+                let registrationData = viewModel.user
+                
+                print("use data : ",registrationData)
+                
+                // 2. Create the ProfileViewModel using that data
+                let profileVM = ProfileViewModel(data: registrationData)
+                
+                // 3. Inject the ViewModel into the destination view controller
+                destinationVC.viewModel = profileVM
+            }
+        }
     }
 }
 
