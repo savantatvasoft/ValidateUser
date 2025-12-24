@@ -31,16 +31,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="313" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="kRx-mo-QcB" userLabel="profileInfo">
-                                <rect key="frame" x="25" y="342" width="343" height="491.33333333333326"/>
+                                <rect key="frame" x="25" y="342" width="343" height="499.33333333333326"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Carter" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Xf-yS-8ba">
-                                        <rect key="frame" x="123.33333333333334" y="40" width="96.666666666666657" height="24.666666666666671"/>
+                                        <rect key="frame" x="123.33333333333334" y="48" width="96.666666666666657" height="24.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mgB-q3-mSG" customClass="UserInput" customModule="ValidateUser" customModuleProvider="target">
-                                        <rect key="frame" x="12" y="94.666666666666686" width="319" height="40"/>
+                                        <rect key="frame" x="12" y="102.66666666666669" width="319" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -48,7 +48,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sx7-Af-3yx" customClass="UserInput" customModule="ValidateUser" customModuleProvider="target">
-                                        <rect key="frame" x="12" y="146.66666666666669" width="319" height="40"/>
+                                        <rect key="frame" x="12" y="154.66666666666669" width="319" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -56,7 +56,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udl-z5-hno" customClass="UserInput" customModule="ValidateUser" customModuleProvider="target">
-                                        <rect key="frame" x="12" y="198.66666666666663" width="319" height="40"/>
+                                        <rect key="frame" x="12" y="206.66666666666663" width="319" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -64,7 +64,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdl-Vv-ZLN" customClass="UserInput" customModule="ValidateUser" customModuleProvider="target">
-                                        <rect key="frame" x="12" y="250.66666666666663" width="319" height="40"/>
+                                        <rect key="frame" x="12" y="258.66666666666663" width="319" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -72,7 +72,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="343" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="aK5-rX-FT9">
-                                        <rect key="frame" x="12" y="302.66666666666663" width="319" height="168.66666666666663"/>
+                                        <rect key="frame" x="12" y="310.66666666666663" width="319" height="168.66666666666663"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMx-PS-hae">
                                                 <rect key="frame" x="50" y="8.0000000000000018" width="62" height="20.666666666666671"/>
@@ -134,7 +134,7 @@
                                     <constraint firstAttribute="trailing" secondItem="udl-z5-hno" secondAttribute="trailing" constant="12" id="I7a-Mn-Ikv"/>
                                     <constraint firstItem="mgB-q3-mSG" firstAttribute="leading" secondItem="kRx-mo-QcB" secondAttribute="leading" constant="12" id="IH6-58-EsF"/>
                                     <constraint firstItem="aK5-rX-FT9" firstAttribute="top" secondItem="jdl-Vv-ZLN" secondAttribute="bottom" constant="12" id="Jxe-eJ-EpU"/>
-                                    <constraint firstItem="5Xf-yS-8ba" firstAttribute="top" secondItem="kRx-mo-QcB" secondAttribute="top" constant="40" id="MJI-Md-lR6"/>
+                                    <constraint firstItem="5Xf-yS-8ba" firstAttribute="top" secondItem="kRx-mo-QcB" secondAttribute="top" constant="48" id="MJI-Md-lR6"/>
                                     <constraint firstItem="udl-z5-hno" firstAttribute="leading" secondItem="kRx-mo-QcB" secondAttribute="leading" constant="12" id="Q5O-fy-weh"/>
                                     <constraint firstAttribute="trailing" secondItem="jdl-Vv-ZLN" secondAttribute="trailing" constant="12" id="QVW-6J-DWo"/>
                                     <constraint firstAttribute="bottom" secondItem="aK5-rX-FT9" secondAttribute="bottom" constant="20" id="V0K-7K-Nos"/>

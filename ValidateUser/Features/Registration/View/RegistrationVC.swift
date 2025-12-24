@@ -1,5 +1,6 @@
 import UIKit
-import PhotosUI // Required for PHPicker
+import PhotosUI
+import SafariServices
 
 class RegistrationVC: UIViewController {
     
@@ -28,6 +29,11 @@ class RegistrationVC: UIViewController {
         setupUI()
         setupKeyboardDismiss()
         setupKeyboardObservers()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.view.bringSubviewToFront(addPhotoBtn)
     }
     
     deinit {
@@ -256,9 +262,21 @@ class RegistrationVC: UIViewController {
     }
     
     @objc private func handleLinkTap() {
-        if let urlStr = linkedinUrl.textField.text, let url = URL(string: urlStr) {
-            UIApplication.shared.open(url)
-        }
+//        if let urlStr = linkedinUrl.textField.text, let url = URL(string: urlStr) {
+//            UIApplication.shared.open(url)
+//        }
+        
+        guard let urlStr = linkedinUrl.textField.text,
+                  let url = URL(string: urlStr),
+                  url.scheme == "http" || url.scheme == "https" else {
+                // Optional: Show an alert if the URL is invalid
+                return
+            }
+            
+            // SFSafariViewController provides a full Safari experience inside your app
+            let safariVC = SFSafariViewController(url: url)
+            safariVC.modalPresentationStyle = .pageSheet // Looks modern and card-like
+            present(safariVC, animated: true)
     }
 
     // MARK: - Image Source Logic
