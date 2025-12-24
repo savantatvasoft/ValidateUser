@@ -19,3 +19,6 @@
 "reg_terms_full" = "I agree to the Terms and Conditions";
 "reg_terms_link" = "Terms and Conditions";
 "btn_register" = "Register";
+"alert_error_title" = "Registration Error";
+"alert_exists_msg" = "This name or email is already registered.";
+"alert_ok" = "OK";

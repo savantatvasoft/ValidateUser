@@ -99,7 +99,18 @@ class RegistrationVC: UIViewController {
     }
     
     @IBAction func onPressRegister(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "navigateToProfile", sender: self)
+        viewModel.checkUserExists { [weak self] exists in
+                guard let self = self else { return }
+                
+                if exists {
+                    AlertManager.showAlert(on: self,
+                                           title: "alert_error_title".localized,
+                                           message: "alert_exists_msg".localized)
+                } else {
+                    self.viewModel.saveUserToCoreData()
+                    self.performSegue(withIdentifier: "navigateToProfile", sender: self)
+                }
+            }
     }
 
     // MARK: - Keyboard Handling
