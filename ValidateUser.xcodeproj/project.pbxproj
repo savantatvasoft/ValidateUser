@@ -148,6 +148,8 @@
 				DEVELOPMENT_TEAM = CRTHLKVC56;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ValidateUser/Resources/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to take a profile photo.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your gallery to choose a profile photo.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Registration;
@@ -180,6 +182,8 @@
 				DEVELOPMENT_TEAM = CRTHLKVC56;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ValidateUser/Resources/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need access to your camera to take a profile photo.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your gallery to choose a profile photo.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Registration;

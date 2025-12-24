@@ -1,8 +1,12 @@
 import UIKit
+import PhotosUI // Required for PHPicker
 
 class RegistrationVC: UIViewController {
-
+    
     // MARK: - Outlets
+    @IBOutlet weak var addPhotoBtn: UIButton!
+    @IBOutlet weak var userImageView: UIImageView!
+    
     @IBOutlet weak var username: InputField!
     @IBOutlet weak var userEmail: InputField!
     @IBOutlet weak var userdob: InputField!
@@ -20,7 +24,7 @@ class RegistrationVC: UIViewController {
     // MARK: - Properties
     private let viewModel = RegistrationViewModel()
     private let datePicker = UIDatePicker()
-
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +34,7 @@ class RegistrationVC: UIViewController {
     }
     
     deinit {
-            // Best practice: remove observers when VC is destroyed
-            NotificationCenter.default.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Setup Methods
@@ -76,7 +79,6 @@ class RegistrationVC: UIViewController {
     @objc private func onTyping(_ textField: UITextField) {
         let text = textField.text ?? ""
         
-        // Sync View -> ViewModel
         switch textField {
         case username.textField: viewModel.user.name = text
         case userEmail.textField: viewModel.user.email = text
@@ -89,9 +91,14 @@ class RegistrationVC: UIViewController {
         updateRegisterButtonState()
     }
 
+    @IBAction func onAddImage(_ sender: UIButton) {
+        showImageSourceOptions()
+    }
+
+
     @IBAction func onPressCheckButton(_ sender: UIButton) {
         sender.isSelected.toggle()
-        viewModel.user.isTermsAccepted = sender.isSelected // Sync to VM
+        viewModel.user.isTermsAccepted = sender.isSelected
         
         let imageName = sender.isSelected ? "Tick_Blue" : "square"
         sender.setImage(UIImage(named: imageName), for: .normal)
@@ -103,23 +110,57 @@ class RegistrationVC: UIViewController {
         print("Registering User: \(viewModel.user.name)")
     }
 
-    // MARK: - UI Logic
+    // MARK: - Keyboard Handling
+    @objc private func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        
+        let keyboardHeight = keyboardFrame.cgRectValue.height
+        let extraPadding: CGFloat = 40
+        
+        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight + extraPadding, right: 0)
+        scrollview.contentInset = contentInsets
+        scrollview.scrollIndicatorInsets = contentInsets
+        
+        if let activeField = findFirstResponder(in: self.view) {
+            let rect = activeField.convert(activeField.bounds, to: scrollview)
+            scrollview.scrollRectToVisible(rect.insetBy(dx: 0, dy: -extraPadding), animated: true)
+        }
+    }
+
+    @objc private func keyboardWillHide(notification: NSNotification) {
+        let contentInsets = UIEdgeInsets.zero
+        scrollview.contentInset = contentInsets
+        scrollview.scrollIndicatorInsets = contentInsets
+    }
+
     private func updateRegisterButtonState() {
         let isValid = viewModel.isFormValid
         registerButttonView.isEnabled = isValid
         
-        // Smoothly adjust opacity and ensure text color
         UIView.animate(withDuration: 0.2) {
+            // Handle opacity for the background
             self.registerButttonView.alpha = isValid ? 1.0 : 0.5
             
-            // Ensure text stays white regardless of state
             if var config = self.registerButttonView.configuration {
+                // This is the key: Create a "Color Transformer" to force white
+                // even when the button state is .disabled
+                config.imagePlacement = .leading
                 config.baseForegroundColor = .white
+                
+                // Re-apply the configuration
                 self.registerButttonView.configuration = config
+                
+                // For newer iOS versions using Configurations:
+                self.registerButttonView.configurationUpdateHandler = { button in
+                    var updatedConfig = button.configuration
+                    updatedConfig?.baseForegroundColor = .white // Force white always
+                    button.configuration = updatedConfig
+                }
             } else {
-                // Fallback for legacy buttons
+                // Fallback for older UIButton styles (Legacy)
                 self.registerButttonView.setTitleColor(.white, for: .normal)
-                self.registerButttonView.setTitleColor(.white, for: .disabled)
+                self.registerButttonView.setTitleColor(.white, for: .disabled) // Force white here
             }
         }
     }
@@ -140,7 +181,6 @@ class RegistrationVC: UIViewController {
         agreementLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTermsTap(_:))))
     }
 
-    // MARK: - Helper Methods
     private func validate(textField: UITextField, isSilent: Bool) {
         let text = textField.text ?? ""
         switch textField {
@@ -160,7 +200,7 @@ class RegistrationVC: UIViewController {
         }
     }
 
-    // MARK: - Date Picker
+    // MARK: - Helpers
     private func setupDatePicker() {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
@@ -178,11 +218,19 @@ class RegistrationVC: UIViewController {
     @objc private func donePressed() {
         let dateString = viewModel.formatDate(datePicker.date)
         userdob.textField.text = dateString
-        viewModel.user.dob = dateString // Sync to VM
+        viewModel.user.dob = dateString
         
         view.endEditing(true)
         validate(textField: userdob.textField, isSilent: false)
         updateRegisterButtonState()
+    }
+
+    private func findFirstResponder(in view: UIView) -> UIView? {
+        if view.isFirstResponder { return view }
+        for subview in view.subviews {
+            if let responder = findFirstResponder(in: subview) { return responder }
+        }
+        return nil
     }
 
     private func updatePlaceholderVisibility() {
@@ -209,46 +257,98 @@ class RegistrationVC: UIViewController {
             UIApplication.shared.open(url)
         }
     }
-    
-    
-    @objc private func keyboardWillShow(notification: NSNotification) {
-            guard let userInfo = notification.userInfo,
-                  let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-            
-            let keyboardHeight = keyboardFrame.cgRectValue.height
-            
-            // Add bottom inset to scrollview so content can be scrolled up
-            let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight, right: 0)
-            scrollview.contentInset = contentInsets
-            scrollview.scrollIndicatorInsets = contentInsets
-        }
 
-        @objc private func keyboardWillHide(notification: NSNotification) {
-            // Reset scrollview insets to zero
-            let contentInsets = UIEdgeInsets.zero
-            scrollview.contentInset = contentInsets
-            scrollview.scrollIndicatorInsets = contentInsets
+    // MARK: - Image Source Logic
+    private func showImageSourceOptions() {
+        let alert = UIAlertController(title: "Profile Photo", message: "Select a source", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default) { _ in self.presentCamera() })
+        alert.addAction(UIAlertAction(title: "Photo Library", style: .default) { _ in self.presentPhotoPicker() })
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        
+        if let popover = alert.popoverPresentationController {
+            popover.sourceView = addPhotoBtn
+            popover.sourceRect = addPhotoBtn.bounds
         }
+        present(alert, animated: true)
+    }
+
+    private func presentCamera() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let picker = UIImagePickerController()
+            picker.sourceType = .camera
+            picker.delegate = self
+            picker.allowsEditing = true
+            present(picker, animated: true)
+        }
+    }
+
+    private func presentPhotoPicker() {
+        var config = PHPickerConfiguration()
+        config.filter = .images
+        config.selectionLimit = 1
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = self // Correctly matches PHPickerViewControllerDelegate
+        present(picker, animated: true)
+    }
 }
 
-// MARK: - Delegates
+// MARK: - Extensions
 extension RegistrationVC: UITextFieldDelegate, UITextViewDelegate {
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
-            // NEW: Automatically scroll to the active field
-            let rect = textField.convert(textField.bounds, to: scrollview)
-            scrollview.scrollRectToVisible(rect, animated: true)
-        }
+        let rect = textField.convert(textField.bounds, to: scrollview)
+        scrollview.scrollRectToVisible(rect.insetBy(dx: 0, dy: -20), animated: true)
+    }
     
     func textViewDidChange(_ textView: UITextView) {
-        viewModel.user.description = textView.text // Sync to VM
+        viewModel.user.description = textView.text
         updatePlaceholderVisibility()
-        self.view.layoutIfNeeded()
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let prospectiveText = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        if textField == userPhonenumber.textField { return prospectiveText.count <= 10 }
-        return true
+        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        return textField == userPhonenumber.textField ? text.count <= 10 : true
+    }
+}
+
+extension RegistrationVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate {
+    
+    // Handle Gallery (PHPicker)
+        func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+            picker.dismiss(animated: true)
+            
+            guard let provider = results.first?.itemProvider, provider.canLoadObject(ofClass: UIImage.self) else { return }
+            
+            provider.loadObject(ofClass: UIImage.self) { [weak self] image, _ in
+                DispatchQueue.main.async {
+                    if let selectedImage = image as? UIImage {
+                        self?.userImageView.image = selectedImage
+                        
+                        // CONVERT AND SYNC
+                        let base64String = self?.convertImageToBase64String(selectedImage)
+                        self?.viewModel.user.userImage = base64String
+                        
+                        self?.updateRegisterButtonState()
+                    }
+                }
+            }
+        }
+        
+        // Handle Camera
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            let selectedImage = (info[.editedImage] ?? info[.originalImage]) as? UIImage
+            userImageView.image = selectedImage
+            
+            if let image = selectedImage {
+                // CONVERT AND SYNC
+                viewModel.user.userImage = convertImageToBase64String(image)
+            }
+            
+            picker.dismiss(animated: true)
+            updateRegisterButtonState()
+        }
+    
+    private func convertImageToBase64String(_ image: UIImage) -> String? {
+        
+        return image.jpegData(compressionQuality: 0.7)?.base64EncodedString()
     }
 }

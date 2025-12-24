@@ -1,6 +1,8 @@
 import Foundation
+import UIKit
 
 struct Registration {
+    var userImage: String? = nil
     var name: String = ""
     var email: String = ""
     var dob: String = ""
