@@ -48,8 +48,6 @@ class InputField: UIView {
         
         errorContainer.isHidden = true
         rightImage.isHidden = true
-        
-        // Explicitly hide and remove image to force Stack View collapse
         leftImage.isHidden = true
         leftImage.image = nil
     }
@@ -68,7 +66,6 @@ class InputField: UIView {
             leftImage.isHidden = true
             leftImage.image = nil
         }
-        // Force the Stack View to re-layout immediately
         self.layoutIfNeeded()
     }
     
