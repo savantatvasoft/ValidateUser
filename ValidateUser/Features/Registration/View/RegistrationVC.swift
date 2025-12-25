@@ -204,15 +204,27 @@ class RegistrationVC: UIViewController {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.maximumDate = Date()
-        
+
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        let done = UIBarButtonItem(title: "reg_done".localized, style: .done, target: self, action: #selector(donePressed))
-        toolbar.setItems([UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), done], animated: false)
-        
+
+        let done = UIBarButtonItem(
+            title: "reg_done".localized,
+            style: .prominent,
+            target: self,
+            action: #selector(donePressed)
+        )
+
+        let flexibleSpace = UIBarButtonItem(
+            barButtonSystemItem: .flexibleSpace,
+            target: nil,
+            action: nil
+        )
+        toolbar.setItems([flexibleSpace, done], animated: false)
         userdob.textField.inputView = datePicker
         userdob.textField.inputAccessoryView = toolbar
     }
+
 
     @objc private func donePressed() {
         let dateString = datePicker.date.toString()
