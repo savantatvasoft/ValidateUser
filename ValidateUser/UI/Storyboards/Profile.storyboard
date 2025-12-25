@@ -31,7 +31,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="313" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="kRx-mo-QcB" userLabel="profileInfo">
-                                <rect key="frame" x="25" y="342" width="343" height="499.33333333333326"/>
+                                <rect key="frame" x="25" y="342.00000000000006" width="343" height="662.33333333333348"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Carter" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Xf-yS-8ba">
                                         <rect key="frame" x="123.33333333333334" y="48" width="96.666666666666657" height="24.666666666666671"/>
@@ -72,7 +72,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="343" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="aK5-rX-FT9">
-                                        <rect key="frame" x="12" y="310.66666666666663" width="319" height="168.66666666666663"/>
+                                        <rect key="frame" x="12" y="310.66666666666663" width="319" height="331.66666666666663"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMx-PS-hae">
                                                 <rect key="frame" x="50" y="8.0000000000000018" width="62" height="20.666666666666671"/>
@@ -81,10 +81,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a94-Nz-zZ2">
-                                                <rect key="frame" x="48" y="28.666666666666742" width="259" height="140"/>
+                                                <rect key="frame" x="48" y="28.666666666666742" width="259" height="303"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="140" id="YfR-7D-c4S"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="n25-vp-hU2"/>
                                                 </constraints>
                                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>

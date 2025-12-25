@@ -153,7 +153,6 @@
                                                                         <rect key="frame" x="0.0" y="20.000000000000004" width="313" height="35.333333333333343"/>
                                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="180" id="HXl-tb-1eB"/>
                                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="MXJ-bt-6eH"/>
                                                                         </constraints>
                                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
