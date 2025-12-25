@@ -63,7 +63,7 @@ class RegistrationVC: UIViewController {
         userPhonenumber.textField.keyboardType = .numberPad
         linkedinUrl.textField.keyboardType = .URL
         linkedinUrl.textField.autocapitalizationType = .none
-        linkedinUrl.setLeftImage(UIImage(named: "linked_In"))
+        linkedinUrl.setLeftImage(UIImage(named: Assets.linkedInIcon))
         userDescriptionTextView.delegate = self
         userDescriptionTextView.isScrollEnabled = false
         updatePlaceholderVisibility()
@@ -99,7 +99,7 @@ class RegistrationVC: UIViewController {
     @IBAction func onPressCheckButton(_ sender: UIButton) {
         sender.isSelected.toggle()
         viewModel.user.isTermsAccepted = sender.isSelected
-        let imageName = sender.isSelected ? "Tick_Blue" : "square"
+        let imageName = sender.isSelected ? Assets.checkOn : Assets.checkOff
         sender.setImage(UIImage(named: imageName), for: .normal)
         updateRegisterButtonState()
     }
@@ -144,8 +144,6 @@ class RegistrationVC: UIViewController {
     private func updateRegisterButtonState() {
         let isValid = viewModel.isFormValid
         registerButttonView.isEnabled = isValid
-        
-        // Set the title using your localization helper
         let buttonTitle = "btn_register".localized
         
         UIView.animate(withDuration: 0.2) {
@@ -161,7 +159,6 @@ class RegistrationVC: UIViewController {
                 }
                 self.registerButttonView.configuration = config
             } else {
-                // Legacy support for older iOS versions
                 self.registerButttonView.setTitle(buttonTitle, for: .normal)
                 self.registerButttonView.setTitleColor(.white, for: .normal)
                 self.registerButttonView.setTitleColor(.white, for: .disabled)
@@ -196,7 +193,7 @@ class RegistrationVC: UIViewController {
             userdob.setErrorState(!isSilent && text.isEmpty, errorMessage: "reg_err_dob".localized)
         case linkedinUrl.textField:
             let result = Validator.isValidURL(text)
-            linkedinUrl.setErrorState(!isSilent && !result, errorMessage: result ? nil : "Invalid LinkedIn URL")
+            linkedinUrl.setErrorState(!isSilent && !result, errorMessage: result ? nil : "reg_invalid_url".localized)
             linkedinUrl.setAsLink(result)
         default: break
         }
@@ -210,7 +207,7 @@ class RegistrationVC: UIViewController {
         
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        let done = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(donePressed))
+        let done = UIBarButtonItem(title: "reg_done".localized, style: .done, target: self, action: #selector(donePressed))
         toolbar.setItems([UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil), done], animated: false)
         
         userdob.textField.inputView = datePicker
@@ -247,9 +244,9 @@ class RegistrationVC: UIViewController {
     @objc private func dismissKeyboard() { view.endEditing(true) }
     
     @objc private func handleTermsTap(_ gesture: UITapGestureRecognizer) {
-        let range = (agreementLabel.text! as NSString).range(of: "Terms and Conditions")
+        let range = (agreementLabel.text! as NSString).range(of: "reg_terms_link".localized)
         if gesture.didTapAttributedTextInLabel(label: agreementLabel, inRange: range) {
-            if let url = URL(string: "https://www.google.com") { UIApplication.shared.open(url) }
+            if let url = URL(string: "reg_google".localized) { UIApplication.shared.open(url) }
         }
     }
     
@@ -260,18 +257,17 @@ class RegistrationVC: UIViewController {
                 return
             }
             
-            // SFSafariViewController provides a full Safari experience inside your app
             let safariVC = SFSafariViewController(url: url)
-            safariVC.modalPresentationStyle = .pageSheet // Looks modern and card-like
+            safariVC.modalPresentationStyle = .pageSheet
             present(safariVC, animated: true)
     }
 
     // MARK: - Image Source Logic
     private func showImageSourceOptions() {
-        let alert = UIAlertController(title: "Profile Photo", message: "Select a source", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Camera", style: .default) { _ in self.presentCamera() })
-        alert.addAction(UIAlertAction(title: "Photo Library", style: .default) { _ in self.presentPhotoPicker() })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        let alert = UIAlertController(title: "reg_profile".localized, message: "reg_source".localized, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "reg_camera".localized, style: .default) { _ in self.presentCamera() })
+        alert.addAction(UIAlertAction(title: "reg_ph_library".localized, style: .default) { _ in self.presentPhotoPicker() })
+        alert.addAction(UIAlertAction(title: "reg_cancel".localized, style: .cancel))
         
         if let popover = alert.popoverPresentationController {
             popover.sourceView = addPhotoBtn
@@ -356,13 +352,11 @@ extension RegistrationVC: UIImagePickerControllerDelegate, UINavigationControlle
             if let image = selectedImage {
                 viewModel.user.userImage = convertImageToBase64String(image)
             }
-            
             picker.dismiss(animated: true)
             updateRegisterButtonState()
         }
     
     private func convertImageToBase64String(_ image: UIImage) -> String? {
-        
         return image.jpegData(compressionQuality: 0.7)?.base64EncodedString()
     }
 }

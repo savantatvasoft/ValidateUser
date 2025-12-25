@@ -21,23 +21,23 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WcE-1W-IwO">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="656.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="616.66666666666663"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Big_TickMark" translatesAutoresizingMaskIntoConstraints="NO" id="MvQ-fy-geb">
-                                                <rect key="frame" x="156.66666666666666" y="80" width="80" height="80"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Big_TickMark" translatesAutoresizingMaskIntoConstraints="NO" id="MvQ-fy-geb">
+                                                <rect key="frame" x="156.66666666666666" y="40" width="80" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="eWX-kh-4dy"/>
                                                     <constraint firstAttribute="height" constant="80" id="vxS-dI-LG3"/>
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your account created successfully!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQR-L2-IUF">
-                                                <rect key="frame" x="73.333333333333329" y="180" width="246.66666666666669" height="22"/>
+                                                <rect key="frame" x="73.333333333333329" y="140" width="246.66666666666669" height="22"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="313" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="kRx-mo-QcB" userLabel="profileInfo">
-                                                <rect key="frame" x="25" y="262" width="343" height="394.66666666666674"/>
+                                                <rect key="frame" x="25" y="222.00000000000003" width="343" height="394.66666666666674"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Carter" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Xf-yS-8ba">
                                                         <rect key="frame" x="123.33333333333334" y="48" width="96.666666666666657" height="24.666666666666671"/>
@@ -70,7 +70,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdl-Vv-ZLN" customClass="UserInput" customModule="ValidateUser" customModuleProvider="target">
-                                                        <rect key="frame" x="12" y="258.66666666666663" width="319" height="40"/>
+                                                        <rect key="frame" x="12" y="258.66666666666669" width="319" height="40"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -163,7 +163,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0xR-tH-v7t" userLabel="userProfile">
-                                                <rect key="frame" x="151.66666666666666" y="217" width="90" height="90"/>
+                                                <rect key="frame" x="151.66666666666666" y="177" width="90" height="90"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Zeb-KD-gOD">
                                                         <rect key="frame" x="0.0" y="0.6666666666666643" width="90" height="88.666666666666686"/>
@@ -211,7 +211,7 @@
                                             <constraint firstItem="0xR-tH-v7t" firstAttribute="centerY" secondItem="kRx-mo-QcB" secondAttribute="top" id="NWk-w6-bEH"/>
                                             <constraint firstItem="MvQ-fy-geb" firstAttribute="centerX" secondItem="WcE-1W-IwO" secondAttribute="centerX" id="SXO-WT-Saf"/>
                                             <constraint firstAttribute="bottom" secondItem="kRx-mo-QcB" secondAttribute="bottom" id="WiK-1s-bHo"/>
-                                            <constraint firstItem="MvQ-fy-geb" firstAttribute="top" secondItem="WcE-1W-IwO" secondAttribute="top" constant="80" id="bVg-OX-H7y"/>
+                                            <constraint firstItem="MvQ-fy-geb" firstAttribute="top" secondItem="WcE-1W-IwO" secondAttribute="top" constant="40" id="bVg-OX-H7y"/>
                                             <constraint firstItem="kRx-mo-QcB" firstAttribute="leading" secondItem="WcE-1W-IwO" secondAttribute="leading" constant="25" id="eRy-2k-Jc4"/>
                                             <constraint firstItem="kRx-mo-QcB" firstAttribute="top" secondItem="wQR-L2-IUF" secondAttribute="bottom" constant="60" id="qhZ-BO-H0u"/>
                                             <constraint firstItem="wQR-L2-IUF" firstAttribute="centerX" secondItem="WcE-1W-IwO" secondAttribute="centerX" id="soG-1N-QV3"/>

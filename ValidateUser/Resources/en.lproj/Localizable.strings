@@ -22,3 +22,11 @@
 "alert_error_title" = "Registration Error";
 "alert_exists_msg" = "This name or email is already registered.";
 "alert_ok" = "OK";
+"reg_profile" = "Profile Photo";
+"reg_source" = "Select a source";
+"reg_camera" = "Camera";
+"reg_ph_library" = "Photo Library";
+"reg_cancel" = "Cancel";
+"reg_google" = "https://www.google.com";
+"reg_done" = "Done";
+"reg_invalid_url" = "Invalid LinkedIn URL";

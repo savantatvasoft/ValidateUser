@@ -35,8 +35,8 @@ class ProfileVC: UIViewController {
         userLinkedInUrl.label.text = vm.data.linkedinUrl
         userDescription.text = vm.data.description
         
-        userEmail.image.image = UIImage(named: "Email")
-        userPhoneNumber.image.image = UIImage(named: "Phone_Call")
-        userLinkedInUrl.image.image = UIImage(named: "linked_In")
+        userEmail.image.image = UIImage(named: Assets.emailIcon)
+        userPhoneNumber.image.image = UIImage(named: Assets.phoneIcon)
+        userLinkedInUrl.image.image = UIImage(named: Assets.linkedInIcon)
     }
 }
