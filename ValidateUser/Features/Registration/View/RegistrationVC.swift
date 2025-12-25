@@ -149,24 +149,16 @@ class RegistrationVC: UIViewController {
         let buttonTitle = "btn_register".localized
         
         UIView.animate(withDuration: 0.2) {
-            // We still dim the whole button's alpha to show it's disabled,
-            // but the text inside will stay crisp white.
             self.registerButttonView.alpha = isValid ? 1.0 : 0.5
             
             if var config = self.registerButttonView.configuration {
                 config.title = buttonTitle
-                
-                // 1. Set the base foreground color to white
                 config.baseForegroundColor = .white
-                
-                // 2. Add a Color Transformer (THE FIX)
-                // This forces the color to stay white regardless of button state (Normal or Disabled)
                 config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
                     var outgoing = incoming
                     outgoing.foregroundColor = .white
                     return outgoing
                 }
-                
                 self.registerButttonView.configuration = config
             } else {
                 // Legacy support for older iOS versions
@@ -262,14 +254,9 @@ class RegistrationVC: UIViewController {
     }
     
     @objc private func handleLinkTap() {
-//        if let urlStr = linkedinUrl.textField.text, let url = URL(string: urlStr) {
-//            UIApplication.shared.open(url)
-//        }
-        
         guard let urlStr = linkedinUrl.textField.text,
                   let url = URL(string: urlStr),
                   url.scheme == "http" || url.scheme == "https" else {
-                // Optional: Show an alert if the URL is invalid
                 return
             }
             

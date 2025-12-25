@@ -171,7 +171,7 @@
                                                                 </constraints>
                                                             </stackView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tell us about yourself .." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgO-8D-Dyv">
-                                                                <rect key="frame" x="12" y="39" width="143.66666666666666" height="19.333333333333329"/>
+                                                                <rect key="frame" x="12" y="40" width="143.66666666666666" height="19.333333333333329"/>
                                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -181,7 +181,7 @@
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="jWC-MD-wPm" secondAttribute="bottom" constant="8" id="6yb-0A-D0P"/>
                                                             <constraint firstItem="hgO-8D-Dyv" firstAttribute="leading" secondItem="3uL-Is-ySt" secondAttribute="leading" constant="12" id="BYB-zj-GdC"/>
-                                                            <constraint firstItem="hgO-8D-Dyv" firstAttribute="top" secondItem="3uL-Is-ySt" secondAttribute="top" constant="39" id="EC0-k8-NXh"/>
+                                                            <constraint firstItem="hgO-8D-Dyv" firstAttribute="top" secondItem="3uL-Is-ySt" secondAttribute="top" constant="40" id="EC0-k8-NXh"/>
                                                             <constraint firstAttribute="trailing" secondItem="jWC-MD-wPm" secondAttribute="trailing" constant="12" id="I8G-WU-h8q"/>
                                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hgO-8D-Dyv" secondAttribute="trailing" constant="20" symbolic="YES" id="X7D-5J-vGp"/>
                                                             <constraint firstItem="jWC-MD-wPm" firstAttribute="leading" secondItem="3uL-Is-ySt" secondAttribute="leading" constant="12" id="YUa-eZ-YX2"/>
