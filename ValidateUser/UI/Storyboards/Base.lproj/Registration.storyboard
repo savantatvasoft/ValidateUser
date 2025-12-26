@@ -119,11 +119,11 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W2h-L6-N0S" customClass="InputField" customModule="ValidateUser" customModuleProvider="target">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ICx-u3-gzU" customClass="InputField" customModule="ValidateUser" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="248" width="337" height="52"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="52" id="Vsw-PH-Bob"/>
+                                                            <constraint firstAttribute="height" constant="52" placeholder="YES" id="TjS-ox-B5p"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -268,27 +268,27 @@
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="Dp9-kB-MZ3" firstAttribute="leading" secondItem="6Gs-T8-rbX" secondAttribute="leading" id="0yj-Lp-UAD"/>
-                                                    <constraint firstItem="W2h-L6-N0S" firstAttribute="top" secondItem="Dp9-kB-MZ3" secondAttribute="bottom" constant="10" id="107-8m-1Gd"/>
                                                     <constraint firstAttribute="trailing" secondItem="Dp9-kB-MZ3" secondAttribute="trailing" id="2Od-Dt-7PG"/>
                                                     <constraint firstAttribute="bottom" secondItem="Z4K-xd-Ln5" secondAttribute="bottom" id="5ad-TF-dNg"/>
-                                                    <constraint firstItem="3uL-Is-ySt" firstAttribute="top" secondItem="W2h-L6-N0S" secondAttribute="bottom" constant="10" id="7RM-de-f19"/>
+                                                    <constraint firstItem="3uL-Is-ySt" firstAttribute="top" secondItem="ICx-u3-gzU" secondAttribute="bottom" constant="10" id="7RM-de-f19"/>
+                                                    <constraint firstItem="ICx-u3-gzU" firstAttribute="top" secondItem="Dp9-kB-MZ3" secondAttribute="bottom" constant="10" id="Anq-gi-Oxw"/>
                                                     <constraint firstItem="4WK-SX-UoR" firstAttribute="top" secondItem="O9G-zR-yFc" secondAttribute="bottom" constant="10" id="IU4-YW-sSA"/>
                                                     <constraint firstItem="Dp9-kB-MZ3" firstAttribute="top" secondItem="4WK-SX-UoR" secondAttribute="bottom" constant="10" id="RYl-IM-cKG"/>
                                                     <constraint firstAttribute="trailing" secondItem="O9G-zR-yFc" secondAttribute="trailing" id="Sna-vl-UFV"/>
+                                                    <constraint firstItem="ICx-u3-gzU" firstAttribute="leading" secondItem="6Gs-T8-rbX" secondAttribute="leading" id="Tsv-m8-OYi"/>
                                                     <constraint firstAttribute="trailing" secondItem="Vb7-m9-uDN" secondAttribute="trailing" id="UPm-fg-89L"/>
                                                     <constraint firstAttribute="trailing" secondItem="4WK-SX-UoR" secondAttribute="trailing" id="V51-zB-LbS"/>
                                                     <constraint firstAttribute="trailing" secondItem="3uL-Is-ySt" secondAttribute="trailing" id="V5e-BQ-KPL"/>
-                                                    <constraint firstItem="W2h-L6-N0S" firstAttribute="leading" secondItem="6Gs-T8-rbX" secondAttribute="leading" id="Wgk-bB-OwZ"/>
                                                     <constraint firstItem="3uL-Is-ySt" firstAttribute="leading" secondItem="6Gs-T8-rbX" secondAttribute="leading" id="ZmQ-Rm-n7i"/>
                                                     <constraint firstItem="Vb7-m9-uDN" firstAttribute="leading" secondItem="6Gs-T8-rbX" secondAttribute="leading" id="atS-tF-Ll3"/>
                                                     <constraint firstAttribute="trailing" secondItem="NU1-dH-DMf" secondAttribute="trailing" id="b02-LH-xTR"/>
                                                     <constraint firstItem="Vb7-m9-uDN" firstAttribute="top" secondItem="3uL-Is-ySt" secondAttribute="bottom" constant="10" id="cCt-WV-yam"/>
                                                     <constraint firstItem="Z4K-xd-Ln5" firstAttribute="top" secondItem="Vb7-m9-uDN" secondAttribute="bottom" constant="20" id="d5e-0r-dNa"/>
+                                                    <constraint firstAttribute="trailing" secondItem="ICx-u3-gzU" secondAttribute="trailing" id="kh7-y8-bQc"/>
                                                     <constraint firstAttribute="trailing" secondItem="Z4K-xd-Ln5" secondAttribute="trailing" id="lHW-yT-XOP"/>
                                                     <constraint firstItem="Z4K-xd-Ln5" firstAttribute="leading" secondItem="6Gs-T8-rbX" secondAttribute="leading" id="nlK-3e-9jp"/>
                                                     <constraint firstItem="4WK-SX-UoR" firstAttribute="leading" secondItem="6Gs-T8-rbX" secondAttribute="leading" id="pLa-hz-fl4"/>
                                                     <constraint firstItem="NU1-dH-DMf" firstAttribute="leading" secondItem="6Gs-T8-rbX" secondAttribute="leading" id="rIv-7Q-0vQ"/>
-                                                    <constraint firstAttribute="trailing" secondItem="W2h-L6-N0S" secondAttribute="trailing" id="rOK-NM-Na3"/>
                                                     <constraint firstItem="O9G-zR-yFc" firstAttribute="top" secondItem="NU1-dH-DMf" secondAttribute="bottom" constant="10" id="tEo-5O-eyz"/>
                                                     <constraint firstItem="NU1-dH-DMf" firstAttribute="top" secondItem="6Gs-T8-rbX" secondAttribute="top" id="uVv-js-LYG"/>
                                                     <constraint firstItem="O9G-zR-yFc" firstAttribute="leading" secondItem="6Gs-T8-rbX" secondAttribute="leading" id="w5x-pq-Pme"/>
@@ -348,12 +348,12 @@
                         <outlet property="agreementLabel" destination="poo-nC-9t4" id="pRH-X2-LpE"/>
                         <outlet property="checkButtonView" destination="BiS-F6-biz" id="pXh-3H-umX"/>
                         <outlet property="descriptionPlaceholderLabel" destination="hgO-8D-Dyv" id="8Mx-3b-wab"/>
-                        <outlet property="linkedinUrl" destination="W2h-L6-N0S" id="9Ym-r8-9Mb"/>
                         <outlet property="registerButttonView" destination="Z4K-xd-Ln5" id="Y6A-ba-4YH"/>
                         <outlet property="scrollview" destination="UUF-LN-RuY" id="21g-dd-MFa"/>
                         <outlet property="userDescriptionTextView" destination="0i8-bf-DQv" id="z1Q-ti-ILf"/>
                         <outlet property="userEmail" destination="4WK-SX-UoR" id="pfi-OV-A5c"/>
                         <outlet property="userImageView" destination="1ju-Qh-HgJ" id="CGw-xX-hH6"/>
+                        <outlet property="userLinkedin" destination="ICx-u3-gzU" id="oEP-Hg-hS3"/>
                         <outlet property="userPhonenumber" destination="Dp9-kB-MZ3" id="K4W-dp-QPX"/>
                         <outlet property="userdob" destination="O9G-zR-yFc" id="tXI-FF-6QX"/>
                         <outlet property="username" destination="NU1-dH-DMf" id="EC9-Jb-x7Q"/>
@@ -405,13 +405,13 @@
             <color red="0.99607843137254903" green="0.99607843137254903" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBrownColor">
-            <color red="0.67450980392156867" green="0.49803921568627452" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -4,6 +4,7 @@ import SafariServices
 
 class RegistrationVC: UIViewController {
     
+    
     // MARK: - Outlets
     @IBOutlet weak var addPhotoBtn: UIButton!
     @IBOutlet weak var userImageView: UIImageView!
@@ -11,7 +12,8 @@ class RegistrationVC: UIViewController {
     @IBOutlet weak var userEmail: InputField!
     @IBOutlet weak var userdob: InputField!
     @IBOutlet weak var userPhonenumber: InputField!
-    @IBOutlet weak var linkedinUrl: InputField!
+  
+    @IBOutlet weak var userLinkedin: InputField!
     @IBOutlet weak var scrollview: UIScrollView!
     @IBOutlet weak var userDescriptionTextView: UITextView!
     @IBOutlet weak var descriptionPlaceholderLabel: UILabel!
@@ -58,23 +60,23 @@ class RegistrationVC: UIViewController {
         userEmail.setPlaceholder("reg_ph_email".localized)
         userdob.setPlaceholder("reg_ph_dob".localized)
         userPhonenumber.setPlaceholder("reg_ph_phone".localized)
-        linkedinUrl.setPlaceholder("reg_ph_linkedin".localized)
-        
+        userLinkedin.setPlaceholder("reg_ph_linkedin".localized)
         userPhonenumber.textField.keyboardType = .numberPad
-        linkedinUrl.textField.keyboardType = .URL
-        linkedinUrl.textField.autocapitalizationType = .none
-        linkedinUrl.setLeftImage(UIImage(named: Assets.linkedInIcon))
+        userLinkedin.textField.keyboardType = .URL
+        userLinkedin.textField.autocapitalizationType = .none
+        userLinkedin.setLeftImage(UIImage(named: Assets.linkedInIcon))
+
         userDescriptionTextView.delegate = self
         userDescriptionTextView.isScrollEnabled = false
         updatePlaceholderVisibility()
         
-        let fields = [username, userEmail, userdob, userPhonenumber, linkedinUrl].compactMap { $0 }
+        let fields = [username, userEmail, userdob, userPhonenumber,userLinkedin].compactMap { $0 }
         fields.forEach { field in
             field.textField.delegate = self
             field.textField.addTarget(self, action: #selector(onTyping(_:)), for: .editingChanged)
         }
-        
-        linkedinUrl.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleLinkTap)))
+    
+        userLinkedin.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleLinkTap)))
     }
 
     // MARK: - Actions
@@ -85,7 +87,7 @@ class RegistrationVC: UIViewController {
             case username.textField: viewModel.user.name = text
             case userEmail.textField: viewModel.user.email = text
             case userPhonenumber.textField: viewModel.user.phone = text
-            case linkedinUrl.textField: viewModel.user.linkedinUrl = text
+        case userLinkedin.textField: viewModel.user.linkedinUrl = text
             default: break
         }
         validate(textField: textField, isSilent: false)
@@ -189,12 +191,17 @@ class RegistrationVC: UIViewController {
             userEmail.setErrorState(!isSilent && !Validator.isValidEmail(text).isValid, errorMessage: Validator.isValidEmail(text).error)
         case userPhonenumber.textField:
             userPhonenumber.setErrorState(!isSilent && !Validator.isValidMobile(text).isValid, errorMessage: Validator.isValidMobile(text).error)
+            
         case userdob.textField:
             userdob.setErrorState(!isSilent && text.isEmpty, errorMessage: "reg_err_dob".localized)
-        case linkedinUrl.textField:
+            
+      
+            
+        case userLinkedin.textField:
             let result = Validator.isValidURL(text)
-            linkedinUrl.setErrorState(!isSilent && !result, errorMessage: result ? nil : "reg_invalid_url".localized)
-            linkedinUrl.setAsLink(result)
+            userLinkedin.setErrorState(!isSilent && !result, errorMessage: result ? nil : "reg_invalid_url".localized)
+            userLinkedin.setAsLink(result)
+            
         default: break
         }
     }
@@ -263,7 +270,7 @@ class RegistrationVC: UIViewController {
     }
     
     @objc private func handleLinkTap() {
-        guard let urlStr = linkedinUrl.textField.text,
+        guard let urlStr = userLinkedin.textField.text,
                   let url = URL(string: urlStr),
                   url.scheme == "http" || url.scheme == "https" else {
                 return
