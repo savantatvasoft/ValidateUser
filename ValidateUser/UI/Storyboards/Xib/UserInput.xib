@@ -39,7 +39,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="Vev-54-kYc" firstAttribute="centerY" secondItem="vWH-xa-tsP" secondAttribute="centerY" id="EEh-oj-TaT"/>
                                 <constraint firstItem="mWI-gy-UC9" firstAttribute="centerY" secondItem="vWH-xa-tsP" secondAttribute="centerY" id="IpC-jD-Jmk"/>
@@ -68,8 +68,8 @@
             <constraints>
                 <constraint firstItem="29B-nB-iyx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="A6w-Pv-IbN"/>
                 <constraint firstAttribute="bottom" secondItem="29B-nB-iyx" secondAttribute="bottom" id="RaJ-1g-5R0"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="29B-nB-iyx" secondAttribute="trailing" id="l27-iN-dmS"/>
-                <constraint firstItem="29B-nB-iyx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="px1-gH-zyc"/>
+                <constraint firstAttribute="trailing" secondItem="29B-nB-iyx" secondAttribute="trailing" id="l27-iN-dmS"/>
+                <constraint firstItem="29B-nB-iyx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="px1-gH-zyc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="-213.74045801526717" y="268.66197183098592"/>
