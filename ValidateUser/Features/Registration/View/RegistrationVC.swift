@@ -64,9 +64,10 @@ class RegistrationVC: UIViewController {
         userLinkedin.textField.keyboardType = .URL
         userLinkedin.textField.autocapitalizationType = .none
         userLinkedin.setLeftImage(UIImage(named: Assets.linkedInIcon))
-
+        userLinkedin.textField.delegate = self
         userDescriptionTextView.delegate = self
         userDescriptionTextView.isScrollEnabled = false
+        userLinkedin.textField.clearButtonMode = .whileEditing
         updatePlaceholderVisibility()
 
         let fields = [username, userEmail, userdob, userPhonenumber, userLinkedin].compactMap { $0 }
@@ -74,8 +75,9 @@ class RegistrationVC: UIViewController {
             field.textField.delegate = self
             field.textField.addTarget(self, action: #selector(onTyping(_:)), for: .editingChanged)
         }
-
-        userLinkedin.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleLinkTap)))
+        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(handleLinkTap))
+        doubleTap.numberOfTapsRequired = 2
+        userLinkedin.addGestureRecognizer(doubleTap)
     }
 
     // MARK: - Actions
@@ -83,11 +85,11 @@ class RegistrationVC: UIViewController {
         let text = textField.text ?? ""
 
         switch textField {
-        case username.textField: viewModel.user.name = text
-        case userEmail.textField: viewModel.user.email = text
-        case userPhonenumber.textField: viewModel.user.phone = text
-        case userLinkedin.textField: viewModel.user.linkedinUrl = text
-        default: break
+            case username.textField: viewModel.user.name = text
+            case userEmail.textField: viewModel.user.email = text
+            case userPhonenumber.textField: viewModel.user.phone = text
+            case userLinkedin.textField: viewModel.user.linkedinUrl = text
+            default: break
         }
         validate(textField: textField, isSilent: false)
         updateRegisterButtonState()
@@ -170,36 +172,50 @@ class RegistrationVC: UIViewController {
     private func setupAgreementLabel() {
         let fullText = "reg_terms_full".localized
         let linkText = "reg_terms_link".localized
+        
+        guard !fullText.isEmpty, !linkText.isEmpty else { return }
+        
         let attributedString = NSMutableAttributedString(string: fullText)
-        let range = (fullText as NSString).range(of: linkText)
+        let nsFullText = fullText as NSString
+        let range = nsFullText.range(of: linkText)
+        
         if range.location != NSNotFound {
-            attributedString.addAttribute(.foregroundColor, value: UIColor.systemBlue, range: range)
-            attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 14), range: range)
+            let linkColor = UIColor.systemBlue
+            attributedString.addAttributes([
+                .foregroundColor: linkColor,
+                .font: UIFont.boldSystemFont(ofSize: 14)
+            ], range: range)
         }
         agreementLabel.attributedText = attributedString
         agreementLabel.isUserInteractionEnabled = true
-        agreementLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTermsTap(_:))))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTermsTap(_:)))
+        agreementLabel.addGestureRecognizer(tapGesture)
     }
 
     private func validate(textField: UITextField, isSilent: Bool) {
         let text = textField.text ?? ""
+        
         switch textField {
-        case username.textField:
-            username.setErrorState(!isSilent && !Validator.isValidName(text).isValid, errorMessage: Validator.isValidName(text).error)
-        case userEmail.textField:
-            userEmail.setErrorState(!isSilent && !Validator.isValidEmail(text).isValid, errorMessage: Validator.isValidEmail(text).error)
-        case userPhonenumber.textField:
-            userPhonenumber.setErrorState(!isSilent && !Validator.isValidMobile(text).isValid, errorMessage: Validator.isValidMobile(text).error)
+            
+            case username.textField:
+                username.setErrorState(!isSilent && !Validator.isValidName(text).isValid, errorMessage: Validator.isValidName(text).error)
+                
+            case userEmail.textField:
+                userEmail.setErrorState(!isSilent && !Validator.isValidEmail(text).isValid, errorMessage: Validator.isValidEmail(text).error)
+            
+            case userPhonenumber.textField:
+                userPhonenumber.setErrorState(!isSilent && !Validator.isValidMobile(text).isValid, errorMessage: Validator.isValidMobile(text).error)
 
-        case userdob.textField:
-            userdob.setErrorState(!isSilent && text.isEmpty, errorMessage: "reg_err_dob".localized)
+            case userdob.textField:
+                userdob.setErrorState(!isSilent && text.isEmpty, errorMessage: "reg_err_dob".localized)
+            
+            case userLinkedin.textField:
+                let result = Validator.isValidURL(text)
+                userLinkedin.setErrorState(!isSilent && !result, errorMessage: result ? nil : "reg_invalid_url".localized)
+                userLinkedin.setAsLink(result)
+                userLinkedin.textField.isUserInteractionEnabled = true
 
-        case userLinkedin.textField:
-            let result = Validator.isValidURL(text)
-            userLinkedin.setErrorState(!isSilent && !result, errorMessage: result ? nil : "reg_invalid_url".localized)
-            userLinkedin.setAsLink(result)
-
-        default: break
+            default: break
         }
     }
 
@@ -256,19 +272,23 @@ class RegistrationVC: UIViewController {
         view.addGestureRecognizer(tap)
     }
 
-    @objc private func dismissKeyboard() { view.endEditing(true) }
+    @objc private func dismissKeyboard() {
+        view.endEditing(true)
+    }
 
     @objc private func handleTermsTap(_ gesture: UITapGestureRecognizer) {
-        let range = (agreementLabel.text! as NSString).range(of: "reg_terms_link".localized)
+        guard let fullText = agreementLabel.text else { return }
+        let linkText = "reg_terms_link".localized
+        let range = (fullText as NSString).range(of: linkText)
         if gesture.didTapAttributedTextInLabel(label: agreementLabel, inRange: range) {
             if let url = URL(string: "reg_google".localized) { UIApplication.shared.open(url) }
         }
     }
-
+    
     @objc private func handleLinkTap() {
-        guard let urlStr = userLinkedin.textField.text,
-              let url = URL(string: urlStr),
-              url.scheme == "http" || url.scheme == "https" else {
+        let urlStr = userLinkedin.textField.text ?? ""
+        guard Validator.isValidURL(urlStr),
+              let url = URL(string: urlStr.hasPrefix("http") ? urlStr : "https://\(urlStr)") else {
             return
         }
 
@@ -323,6 +343,17 @@ class RegistrationVC: UIViewController {
 
 // MARK: - Extensions
 extension RegistrationVC: UITextFieldDelegate, UITextViewDelegate {
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == userLinkedin.textField {
+            let text = textField.text ?? ""
+            if Validator.isValidURL(text) && textField.isFirstResponder {
+                handleLinkTap()
+                return false
+            }
+        }
+        return true
+    }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let rect = textField.convert(textField.bounds, to: scrollview)
@@ -335,8 +366,12 @@ extension RegistrationVC: UITextFieldDelegate, UITextViewDelegate {
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
-        return textField == userPhonenumber.textField ? text.count <= 10 : true
+        let currentText = textField.text ?? ""
+        let newText = (currentText as NSString).replacingCharacters(in: range, with: string)
+        if textField == userPhonenumber.textField {
+            return newText.count <= 10
+        }
+        return true
     }
 }
 
@@ -359,7 +394,6 @@ extension RegistrationVC: UIImagePickerControllerDelegate, UINavigationControlle
         }
     }
 
-    // Handle Camera
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         let selectedImage = (info[.editedImage] ?? info[.originalImage]) as? UIImage
         userImageView.image = selectedImage

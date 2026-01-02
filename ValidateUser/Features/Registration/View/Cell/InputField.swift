@@ -1,6 +1,5 @@
 import UIKit
 
-//@IBDesignable
 class InputField: UIView {
 
     @IBOutlet weak var mainContainerView: UIView!
@@ -32,7 +31,6 @@ class InputField: UIView {
         addSubview(xibView)
     }
 
-    // Use awakeFromNib to ensure outlets are fully connected before hiding
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
@@ -52,8 +50,6 @@ class InputField: UIView {
         leftImage.image = nil
     }
 
-    // MARK: - Configuration Functions
-
     func setPlaceholder(_ text: String) {
         textField.placeholder = text
     }
@@ -70,7 +66,8 @@ class InputField: UIView {
     }
 
     func setErrorState(_ hasError: Bool, errorMessage: String? = nil) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             UIView.animate(withDuration: 0.3) {
                 self.errorText.text = errorMessage
                 self.errorContainer.isHidden = !hasError
@@ -80,7 +77,7 @@ class InputField: UIView {
                     self.rightImage.isHidden = true
                 } else {
                     self.rightImage.isHidden = false
-                    let imageName = hasError ? "Warning_Red" : "Tick_Green"
+                    let imageName = hasError ? Assets.warningIcon : Assets.successIcon
                     self.rightImage.image = UIImage(named: imageName)
                 }
 
@@ -90,8 +87,11 @@ class InputField: UIView {
     }
 
     func setAsLink(_ isLink: Bool) {
-        textField.textColor = isLink ? .systemBlue : .label
-        // Optionally add underline for a more classic link look
+        if isLink {
+            textField.textColor = .systemBlue
+        } else {
+            textField.textColor = .label // or your default dull color
+        }
     }
 
 }

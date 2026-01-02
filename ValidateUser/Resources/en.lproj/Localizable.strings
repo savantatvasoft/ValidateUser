@@ -8,14 +8,19 @@
 /* Registration Screen */
 /* Registration Screen */
 "reg_ph_name" = "Enter Name";
+"reg_name_req" = "Name is required";
+"reg_name_count" = "Minimum 3 characters required";
 "reg_ph_email" = "Enter Email";
+"reg_email_req" = "Email is required";
+"reg_email_valid" = "Please enter a valid email address";
 "reg_ph_dob" = "DD/MM/YYYY";
+"reg_mob_req" = "Mobile number is required";
+"reg_mob_digit" = "Only digits are allowed";
+"reg_mob_count" = "Mobile number must be exactly 10 digits";
 "reg_ph_phone" = "Enter 10-digit mobile number";
 "reg_ph_linkedin" = "LinkedIn Profile URL";
-
 "reg_err_dob" = "Date of birth is required";
 "reg_err_linkedin" = "Invalid LinkedIn URL";
-
 "reg_terms_full" = "I agree to the Terms and Conditions";
 "reg_terms_link" = "Terms and Conditions";
 "btn_register" = "Register";

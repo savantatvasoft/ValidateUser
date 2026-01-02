@@ -13,4 +13,6 @@ struct Assets {
     static let phoneIcon = "Phone_Call"
     static let checkOn = "Tick_Blue"
     static let checkOff = "Square"
+    static let warningIcon = "Warning_Red"
+    static let successIcon = "Tick_Green"
 }
