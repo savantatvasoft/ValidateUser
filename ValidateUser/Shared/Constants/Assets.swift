@@ -12,5 +12,5 @@ struct Assets {
     static let emailIcon = "Email"
     static let phoneIcon = "Phone_Call"
     static let checkOn = "Tick_Blue"
-    static let checkOff = "square"
+    static let checkOff = "Square"
 }
