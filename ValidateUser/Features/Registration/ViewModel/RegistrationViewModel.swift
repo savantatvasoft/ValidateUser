@@ -1,5 +1,6 @@
 import Foundation
 import CoreData
+import UIKit
 
 class RegistrationViewModel {
 
@@ -18,10 +19,7 @@ class RegistrationViewModel {
     func checkUserExists(completion: @escaping (Bool) -> Void) {
             let context = CoreDataManager.shared.context
             let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
-
-            // Predicate to check name OR email
             fetchRequest.predicate = NSPredicate(format: "name == %@ OR email == %@", user.name, user.email)
-
             do {
                 let count = try context.count(for: fetchRequest)
                 completion(count > 0)
@@ -29,21 +27,25 @@ class RegistrationViewModel {
                 print("Fetch error: \(error)")
                 completion(false)
             }
+    }
+    
+    func saveUserToCoreData() {
+        let context = CoreDataManager.shared.context
+        let newUser = UserEntity(context: context)
+        newUser.name = user.name
+        newUser.email = user.email
+        newUser.phone = user.phone
+        newUser.dob = user.dob
+        newUser.linkedinUrl = user.linkedinUrl
+        newUser.userDescription = user.description
+        newUser.userImage = user.userImage // Base64 string
+
+        CoreDataManager.shared.saveContext()
+    }
+    
+    func updateUserImage(_ image: UIImage) {
+        if let base64String = image.jpegData(compressionQuality: 0.7)?.base64EncodedString() {
+            user.userImage = base64String
         }
-
-        // Save user to Core Data
-        func saveUserToCoreData() {
-            let context = CoreDataManager.shared.context
-            let newUser = UserEntity(context: context)
-
-            newUser.name = user.name
-            newUser.email = user.email
-            newUser.phone = user.phone
-            newUser.dob = user.dob
-            newUser.linkedinUrl = user.linkedinUrl
-            newUser.userDescription = user.description
-            newUser.userImage = user.userImage // Base64 string
-
-            CoreDataManager.shared.saveContext()
-        }
+    }
 }

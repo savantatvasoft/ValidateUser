@@ -1,6 +1,5 @@
 import UIKit
 import PhotosUI
-import SafariServices
 
 class RegistrationVC: UIViewController {
 
@@ -23,13 +22,20 @@ class RegistrationVC: UIViewController {
     // MARK: - Properties
     private let viewModel = RegistrationViewModel()
     private let datePicker = UIDatePicker()
+    private lazy var keyboardManager = KeyboardManager(scrollView: scrollview, viewController: self)
+    private lazy var imageManager: ImagePickerManager = {
+        let manager = ImagePickerManager(viewController: self)
+        manager.onImageSelected = { [weak self] image in
+            self?.handleImageSelection(image)
+        }
+        return manager
+    }()
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupKeyboardDismiss()
-        setupKeyboardObservers()
+        keyboardManager.observeKeyboard()
     }
 
     override func viewDidLayoutSubviews() {
@@ -38,7 +44,7 @@ class RegistrationVC: UIViewController {
     }
 
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        keyboardManager.stopObserving()
     }
 
     // MARK: - Setup Methods
@@ -47,11 +53,6 @@ class RegistrationVC: UIViewController {
         setupAgreementLabel()
         configureInputFields()
         updateRegisterButtonState()
-    }
-
-    private func setupKeyboardObservers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     private func configureInputFields() {
@@ -96,7 +97,7 @@ class RegistrationVC: UIViewController {
     }
 
     @IBAction func onAddImage(_ sender: UIButton) {
-        showImageSourceOptions()
+        imageManager.showOptions(sourceView: sender)
     }
 
     @IBAction func onPressCheckButton(_ sender: UIButton) {
@@ -122,28 +123,12 @@ class RegistrationVC: UIViewController {
         }
     }
 
-    // MARK: - Keyboard Handling
-    @objc private func keyboardWillShow(notification: NSNotification) {
-
-        guard let userInfo = notification.userInfo,
-              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
-        let keyboardHeight = keyboardFrame.cgRectValue.height
-        let extraPadding: CGFloat = 40
-        let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight + extraPadding, right: 0)
-        scrollview.contentInset = contentInsets
-        scrollview.scrollIndicatorInsets = contentInsets
-        if let activeField = findFirstResponder(in: self.view) {
-            let rect = activeField.convert(activeField.bounds, to: scrollview)
-            scrollview.scrollRectToVisible(rect.insetBy(dx: 0, dy: -extraPadding), animated: true)
-        }
+    private func handleImageSelection(_ image: UIImage) {
+        userImageView.image = image
+        viewModel.updateUserImage(image)
+        updateRegisterButtonState()
     }
-
-    @objc private func keyboardWillHide(notification: NSNotification) {
-        let contentInsets = UIEdgeInsets.zero
-        scrollview.contentInset = contentInsets
-        scrollview.scrollIndicatorInsets = contentInsets
-    }
-
+   
     private func updateRegisterButtonState() {
         let isValid = viewModel.isFormValid
         registerButttonView.isEnabled = isValid
@@ -254,26 +239,8 @@ class RegistrationVC: UIViewController {
         updateRegisterButtonState()
     }
 
-    private func findFirstResponder(in view: UIView) -> UIView? {
-        if view.isFirstResponder { return view }
-        for subview in view.subviews {
-            if let responder = findFirstResponder(in: subview) { return responder }
-        }
-        return nil
-    }
-
     private func updatePlaceholderVisibility() {
         descriptionPlaceholderLabel.isHidden = !userDescriptionTextView.text.isEmpty || userDescriptionTextView.isFirstResponder
-    }
-
-    private func setupKeyboardDismiss() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-
-    @objc private func dismissKeyboard() {
-        view.endEditing(true)
     }
 
     @objc private func handleTermsTap(_ gesture: UITapGestureRecognizer) {
@@ -286,48 +253,8 @@ class RegistrationVC: UIViewController {
     }
     
     @objc private func handleLinkTap() {
-        let urlStr = userLinkedin.textField.text ?? ""
-        guard Validator.isValidURL(urlStr),
-              let url = URL(string: urlStr.hasPrefix("http") ? urlStr : "https://\(urlStr)") else {
-            return
-        }
-
-        let safariVC = SFSafariViewController(url: url)
-        safariVC.modalPresentationStyle = .pageSheet
-        present(safariVC, animated: true)
-    }
-
-    // MARK: - Image Source Logic
-    private func showImageSourceOptions() {
-        let alert = UIAlertController(title: "reg_profile".localized, message: "reg_source".localized, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "reg_camera".localized, style: .default) { _ in self.presentCamera() })
-        alert.addAction(UIAlertAction(title: "reg_ph_library".localized, style: .default) { _ in self.presentPhotoPicker() })
-        alert.addAction(UIAlertAction(title: "reg_cancel".localized, style: .cancel))
-
-        if let popover = alert.popoverPresentationController {
-            popover.sourceView = addPhotoBtn
-            popover.sourceRect = addPhotoBtn.bounds
-        }
-        present(alert, animated: true)
-    }
-
-    private func presentCamera() {
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let picker = UIImagePickerController()
-            picker.sourceType = .camera
-            picker.delegate = self
-            picker.allowsEditing = true
-            present(picker, animated: true)
-        }
-    }
-
-    private func presentPhotoPicker() {
-        var config = PHPickerConfiguration()
-        config.filter = .images
-        config.selectionLimit = 1
-        let picker = PHPickerViewController(configuration: config)
-        picker.delegate = self
-        present(picker, animated: true)
+        let urlStr = userLinkedin.textField.text
+        WebViewManager.open(urlStr: urlStr, from: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
