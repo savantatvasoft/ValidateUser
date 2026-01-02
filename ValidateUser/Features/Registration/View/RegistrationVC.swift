@@ -251,7 +251,7 @@ class RegistrationVC: UIViewController {
     }
 
     private func updatePlaceholderVisibility() {
-        descriptionPlaceholderLabel.isHidden = !userDescriptionTextView.text.isEmpty || userDescriptionTextView.isFirstResponder
+//        descriptionPlaceholderLabel.isHidden = !userDescriptionTextView.text.isEmpty || userDescriptionTextView.isFirstResponder
     }
     
     private func setupKeyboardDismiss() {
