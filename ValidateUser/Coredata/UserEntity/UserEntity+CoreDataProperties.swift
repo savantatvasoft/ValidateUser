@@ -9,7 +9,6 @@
 public import Foundation
 public import CoreData
 
-
 public typealias UserEntityCoreDataPropertiesSet = NSSet
 
 extension UserEntity {
@@ -28,6 +27,6 @@ extension UserEntity {
 
 }
 
-extension UserEntity : Identifiable {
+extension UserEntity: Identifiable {
 
 }

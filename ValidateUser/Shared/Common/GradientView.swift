@@ -13,7 +13,7 @@ final class GradientView: UIView {
     // MARK: - Gradient Colors
     @IBInspectable var topColor: UIColor = UIColor(red: 254/255, green: 254/255, blue: 255/255, alpha: 1)
     @IBInspectable var bottomColor: UIColor = UIColor(red: 215/255, green: 215/255, blue: 255/255, alpha: 1)
-    
+
     // MARK: - Layout
     override func layoutSubviews() {
         super.layoutSubviews()

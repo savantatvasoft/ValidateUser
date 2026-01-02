@@ -8,15 +8,15 @@
 import UIKit
 
 class ProfileViewModel {
-    
+
     let data: Registration
-    
+
     init(data: Registration) {
         self.data = data
     }
-    
+
     func getProfileImage() -> UIImage? {
-            
+
             if let base64String = data.userImage,
                let imageData = Data(base64Encoded: base64String) {
                 return UIImage(data: imageData)

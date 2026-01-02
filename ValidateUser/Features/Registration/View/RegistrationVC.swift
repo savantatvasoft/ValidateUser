@@ -3,8 +3,7 @@ import PhotosUI
 import SafariServices
 
 class RegistrationVC: UIViewController {
-    
-    
+
     // MARK: - Outlets
     @IBOutlet weak var addPhotoBtn: UIButton!
     @IBOutlet weak var userImageView: UIImageView!
@@ -12,7 +11,7 @@ class RegistrationVC: UIViewController {
     @IBOutlet weak var userEmail: InputField!
     @IBOutlet weak var userdob: InputField!
     @IBOutlet weak var userPhonenumber: InputField!
-  
+
     @IBOutlet weak var userLinkedin: InputField!
     @IBOutlet weak var scrollview: UIScrollView!
     @IBOutlet weak var userDescriptionTextView: UITextView!
@@ -20,11 +19,11 @@ class RegistrationVC: UIViewController {
     @IBOutlet weak var agreementLabel: UILabel!
     @IBOutlet weak var checkButtonView: UIButton!
     @IBOutlet weak var registerButttonView: UIButton!
-    
+
     // MARK: - Properties
     private let viewModel = RegistrationViewModel()
     private let datePicker = UIDatePicker()
-    
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,16 +31,16 @@ class RegistrationVC: UIViewController {
         setupKeyboardDismiss()
         setupKeyboardObservers()
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.view.bringSubviewToFront(addPhotoBtn)
     }
-    
+
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
+
     // MARK: - Setup Methods
     private func setupUI() {
         setupDatePicker()
@@ -49,7 +48,7 @@ class RegistrationVC: UIViewController {
         configureInputFields()
         updateRegisterButtonState()
     }
-    
+
     private func setupKeyboardObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -69,26 +68,26 @@ class RegistrationVC: UIViewController {
         userDescriptionTextView.delegate = self
         userDescriptionTextView.isScrollEnabled = false
         updatePlaceholderVisibility()
-        
-        let fields = [username, userEmail, userdob, userPhonenumber,userLinkedin].compactMap { $0 }
+
+        let fields = [username, userEmail, userdob, userPhonenumber, userLinkedin].compactMap { $0 }
         fields.forEach { field in
             field.textField.delegate = self
             field.textField.addTarget(self, action: #selector(onTyping(_:)), for: .editingChanged)
         }
-    
+
         userLinkedin.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleLinkTap)))
     }
 
     // MARK: - Actions
     @objc private func onTyping(_ textField: UITextField) {
         let text = textField.text ?? ""
-        
+
         switch textField {
-            case username.textField: viewModel.user.name = text
-            case userEmail.textField: viewModel.user.email = text
-            case userPhonenumber.textField: viewModel.user.phone = text
+        case username.textField: viewModel.user.name = text
+        case userEmail.textField: viewModel.user.email = text
+        case userPhonenumber.textField: viewModel.user.phone = text
         case userLinkedin.textField: viewModel.user.linkedinUrl = text
-            default: break
+        default: break
         }
         validate(textField: textField, isSilent: false)
         updateRegisterButtonState()
@@ -105,27 +104,27 @@ class RegistrationVC: UIViewController {
         sender.setImage(UIImage(named: imageName), for: .normal)
         updateRegisterButtonState()
     }
-    
+
     @IBAction func onPressRegister(_ sender: UIButton) {
         viewModel.checkUserExists { [weak self] exists in
-                guard let self = self else { return }
-                
-                if exists {
-                    AlertManager.showAlert(on: self,
-                                           title: "alert_error_title".localized,
-                                           message: "alert_exists_msg".localized)
-                } else {
-                    self.viewModel.saveUserToCoreData()
-                    self.performSegue(withIdentifier: "navigateToProfile", sender: self)
-                }
+            guard let self = self else { return }
+
+            if exists {
+                AlertManager.showAlert(on: self,
+                                       title: "alert_error_title".localized,
+                                       message: "alert_exists_msg".localized)
+            } else {
+                self.viewModel.saveUserToCoreData()
+                self.performSegue(withIdentifier: "navigateToProfile", sender: self)
             }
+        }
     }
 
     // MARK: - Keyboard Handling
     @objc private func keyboardWillShow(notification: NSNotification) {
-        
+
         guard let userInfo = notification.userInfo,
-        let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
         let keyboardHeight = keyboardFrame.cgRectValue.height
         let extraPadding: CGFloat = 40
         let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight + extraPadding, right: 0)
@@ -147,10 +146,10 @@ class RegistrationVC: UIViewController {
         let isValid = viewModel.isFormValid
         registerButttonView.isEnabled = isValid
         let buttonTitle = "btn_register".localized
-        
+
         UIView.animate(withDuration: 0.2) {
             self.registerButttonView.alpha = isValid ? 1.0 : 0.5
-            
+
             if var config = self.registerButttonView.configuration {
                 config.title = buttonTitle
                 config.baseForegroundColor = .white
@@ -191,17 +190,15 @@ class RegistrationVC: UIViewController {
             userEmail.setErrorState(!isSilent && !Validator.isValidEmail(text).isValid, errorMessage: Validator.isValidEmail(text).error)
         case userPhonenumber.textField:
             userPhonenumber.setErrorState(!isSilent && !Validator.isValidMobile(text).isValid, errorMessage: Validator.isValidMobile(text).error)
-            
+
         case userdob.textField:
             userdob.setErrorState(!isSilent && text.isEmpty, errorMessage: "reg_err_dob".localized)
-            
-      
-            
+
         case userLinkedin.textField:
             let result = Validator.isValidURL(text)
             userLinkedin.setErrorState(!isSilent && !result, errorMessage: result ? nil : "reg_invalid_url".localized)
             userLinkedin.setAsLink(result)
-            
+
         default: break
         }
     }
@@ -232,7 +229,6 @@ class RegistrationVC: UIViewController {
         userdob.textField.inputAccessoryView = toolbar
     }
 
-
     @objc private func donePressed() {
         let dateString = datePicker.date.toString()
         userdob.textField.text = dateString
@@ -253,7 +249,7 @@ class RegistrationVC: UIViewController {
     private func updatePlaceholderVisibility() {
         descriptionPlaceholderLabel.isHidden = !userDescriptionTextView.text.isEmpty || userDescriptionTextView.isFirstResponder
     }
-    
+
     private func setupKeyboardDismiss() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
@@ -261,24 +257,24 @@ class RegistrationVC: UIViewController {
     }
 
     @objc private func dismissKeyboard() { view.endEditing(true) }
-    
+
     @objc private func handleTermsTap(_ gesture: UITapGestureRecognizer) {
         let range = (agreementLabel.text! as NSString).range(of: "reg_terms_link".localized)
         if gesture.didTapAttributedTextInLabel(label: agreementLabel, inRange: range) {
             if let url = URL(string: "reg_google".localized) { UIApplication.shared.open(url) }
         }
     }
-    
+
     @objc private func handleLinkTap() {
         guard let urlStr = userLinkedin.textField.text,
-                  let url = URL(string: urlStr),
-                  url.scheme == "http" || url.scheme == "https" else {
-                return
-            }
-            
-            let safariVC = SFSafariViewController(url: url)
-            safariVC.modalPresentationStyle = .pageSheet
-            present(safariVC, animated: true)
+              let url = URL(string: urlStr),
+              url.scheme == "http" || url.scheme == "https" else {
+            return
+        }
+
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.modalPresentationStyle = .pageSheet
+        present(safariVC, animated: true)
     }
 
     // MARK: - Image Source Logic
@@ -287,7 +283,7 @@ class RegistrationVC: UIViewController {
         alert.addAction(UIAlertAction(title: "reg_camera".localized, style: .default) { _ in self.presentCamera() })
         alert.addAction(UIAlertAction(title: "reg_ph_library".localized, style: .default) { _ in self.presentPhotoPicker() })
         alert.addAction(UIAlertAction(title: "reg_cancel".localized, style: .cancel))
-        
+
         if let popover = alert.popoverPresentationController {
             popover.sourceView = addPhotoBtn
             popover.sourceRect = addPhotoBtn.bounds
@@ -313,7 +309,7 @@ class RegistrationVC: UIViewController {
         picker.delegate = self
         present(picker, animated: true)
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "navigateToProfile" {
             if let destinationVC = segue.destination as? ProfileVC {
@@ -327,12 +323,12 @@ class RegistrationVC: UIViewController {
 
 // MARK: - Extensions
 extension RegistrationVC: UITextFieldDelegate, UITextViewDelegate {
-    
+
     func textFieldDidBeginEditing(_ textField: UITextField) {
         let rect = textField.convert(textField.bounds, to: scrollview)
         scrollview.scrollRectToVisible(rect.insetBy(dx: 0, dy: -20), animated: true)
     }
-    
+
     func textViewDidChange(_ textView: UITextView) {
         viewModel.user.description = textView.text
         updatePlaceholderVisibility()
@@ -346,35 +342,35 @@ extension RegistrationVC: UITextFieldDelegate, UITextViewDelegate {
 
 extension RegistrationVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate, PHPickerViewControllerDelegate {
 
-        func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-            picker.dismiss(animated: true)
-            
-            guard let provider = results.first?.itemProvider, provider.canLoadObject(ofClass: UIImage.self) else { return }
-            
-            provider.loadObject(ofClass: UIImage.self) { [weak self] image, _ in
-                DispatchQueue.main.async {
-                    if let selectedImage = image as? UIImage {
-                        self?.userImageView.image = selectedImage
-                        let base64String = self?.convertImageToBase64String(selectedImage)
-                        self?.viewModel.user.userImage = base64String
-                        self?.updateRegisterButtonState()
-                    }
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+
+        guard let provider = results.first?.itemProvider, provider.canLoadObject(ofClass: UIImage.self) else { return }
+
+        provider.loadObject(ofClass: UIImage.self) { [weak self] image, _ in
+            DispatchQueue.main.async {
+                if let selectedImage = image as? UIImage {
+                    self?.userImageView.image = selectedImage
+                    let base64String = self?.convertImageToBase64String(selectedImage)
+                    self?.viewModel.user.userImage = base64String
+                    self?.updateRegisterButtonState()
                 }
             }
         }
-        
-        // Handle Camera
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            let selectedImage = (info[.editedImage] ?? info[.originalImage]) as? UIImage
-            userImageView.image = selectedImage
-            
-            if let image = selectedImage {
-                viewModel.user.userImage = convertImageToBase64String(image)
-            }
-            picker.dismiss(animated: true)
-            updateRegisterButtonState()
+    }
+
+    // Handle Camera
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+        let selectedImage = (info[.editedImage] ?? info[.originalImage]) as? UIImage
+        userImageView.image = selectedImage
+
+        if let image = selectedImage {
+            viewModel.user.userImage = convertImageToBase64String(image)
         }
-    
+        picker.dismiss(animated: true)
+        updateRegisterButtonState()
+    }
+
     private func convertImageToBase64String(_ image: UIImage) -> String? {
         return image.jpegData(compressionQuality: 0.7)?.base64EncodedString()
     }

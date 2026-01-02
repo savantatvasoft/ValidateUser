@@ -56,10 +56,10 @@
                                             </constraints>
                                         </imageView>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" name="Primary"/>
                                 </stackView>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="backgroundColor" name="Primary"/>
                             <constraints>
                                 <constraint firstItem="yxJ-wq-zca" firstAttribute="top" secondItem="e33-tt-6Cy" secondAttribute="top" id="HxV-4E-Nqa"/>
                                 <constraint firstAttribute="bottom" secondItem="yxJ-wq-zca" secondAttribute="bottom" id="IbQ-GA-tg1"/>
@@ -136,14 +136,14 @@
     <resources>
         <image name="Warning_Red" width="512" height="512"/>
         <image name="linked_In" width="96" height="96"/>
+        <namedColor name="Primary">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
         <namedColor name="Warning">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="opaqueSeparatorColor">
             <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

@@ -45,7 +45,7 @@
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="1ju-Qh-HgJ" secondAttribute="trailing" id="3cC-qP-wbl"/>
-                                                    <constraint firstAttribute="height" constant="140" id="Beb-OC-Vz9"/>
+                                                    <constraint firstAttribute="width" secondItem="1wd-K6-gsc" secondAttribute="height" multiplier="1:1" id="Cfa-QJ-Bnx"/>
                                                     <constraint firstAttribute="bottom" secondItem="1ju-Qh-HgJ" secondAttribute="bottom" id="ED7-Zb-qKB"/>
                                                     <constraint firstItem="1ju-Qh-HgJ" firstAttribute="leading" secondItem="1wd-K6-gsc" secondAttribute="leading" id="MGd-iy-39A"/>
                                                     <constraint firstItem="1ju-Qh-HgJ" firstAttribute="top" secondItem="1wd-K6-gsc" secondAttribute="top" id="mBw-n6-gfi"/>
@@ -192,7 +192,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <color key="backgroundColor" name="Primary"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="jWC-MD-wPm" secondAttribute="bottom" constant="8" id="6yb-0A-D0P"/>
                                                             <constraint firstItem="hgO-8D-Dyv" firstAttribute="leading" secondItem="3uL-Is-ySt" secondAttribute="leading" constant="13" id="BYB-zj-GdC"/>
@@ -408,7 +408,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Square" width="64" height="64"/>
+        <image name="Square" width="512" height="512"/>
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -418,6 +418,9 @@
         </namedColor>
         <namedColor name="BackgroundSecondaryColor">
             <color red="0.99607843137254903" green="0.99607843137254903" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
         <namedColor name="ProfileTint">
             <color red="0.84313725490196079" green="0.84313725490196079" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -12,13 +12,13 @@ import UIKit
 class CoreDataManager {
     // Singleton instance to access from anywhere
     static let shared = CoreDataManager()
-    
+
     private init() {}
 
     // The container that holds the database
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "ValidateUser")
-        container.loadPersistentStores { (storeDescription, error) in
+        container.loadPersistentStores { (_, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
@@ -42,11 +42,11 @@ class CoreDataManager {
             }
         }
     }
-    
+
     func fetchUserDetails(email: String) -> UserEntity? {
             let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "email == %@", email)
-            
+
             do {
                 let results = try context.fetch(fetchRequest)
                 return results.first // Returns the specific user object

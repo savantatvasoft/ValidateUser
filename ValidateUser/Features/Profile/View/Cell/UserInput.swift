@@ -8,9 +8,8 @@
 import Foundation
 import UIKit
 
-@IBDesignable
 class UserInput: UIView {
-   
+
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var image: UIImageView!
     // MARK: - Init
@@ -18,28 +17,20 @@ class UserInput: UIView {
         super.init(frame: frame)
         commonInit()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         commonInit()
     }
-    
-    
-    // Use awakeFromNib to ensure outlets are fully connected before hiding
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
+
     private func commonInit() {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "UserInput", bundle: bundle)
         guard let xibView = nib.instantiate(withOwner: self, options: nil).first as? UIView else { return }
-        
+
         xibView.frame = self.bounds
         xibView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(xibView)
     }
 
-    
-   
 }
