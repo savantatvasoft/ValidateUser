@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension String {
     var containsEmoji: Bool {
@@ -28,4 +29,19 @@ extension String {
     var localized: String {
             return NSLocalizedString(self, comment: "")
     }
+    
+    func toClickableText(linkText: String, color: UIColor = .systemBlue) -> NSAttributedString {
+            let attributedString = NSMutableAttributedString(string: self)
+            let nsString = self as NSString
+            let range = nsString.range(of: linkText)
+            
+            if range.location != NSNotFound {
+                attributedString.addAttributes([
+                    .foregroundColor: color,
+                    .font: UIFont.boldSystemFont(ofSize: 14)
+                ], range: range)
+            }
+            
+            return attributedString
+        }
 }

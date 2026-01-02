@@ -220,7 +220,7 @@
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BiS-F6-biz">
                                                                 <rect key="frame" x="0.0" y="8" width="24" height="24"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="24" id="c8d-pH-Jan"/>
+                                                                    <constraint firstAttribute="width" secondItem="BiS-F6-biz" secondAttribute="height" multiplier="1:1" id="U86-3C-pGM"/>
                                                                     <constraint firstAttribute="height" constant="24" id="vWa-Yo-Juw"/>
                                                                 </constraints>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>

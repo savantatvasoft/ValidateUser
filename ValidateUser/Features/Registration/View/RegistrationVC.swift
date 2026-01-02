@@ -21,7 +21,6 @@ class RegistrationVC: UIViewController {
 
     // MARK: - Properties
     private let viewModel = RegistrationViewModel()
-    private let datePicker = UIDatePicker()
     private lazy var keyboardManager = KeyboardManager(scrollView: scrollview, viewController: self)
     private lazy var imageManager: ImagePickerManager = {
         let manager = ImagePickerManager(viewController: self)
@@ -131,47 +130,14 @@ class RegistrationVC: UIViewController {
    
     private func updateRegisterButtonState() {
         let isValid = viewModel.isFormValid
-        registerButttonView.isEnabled = isValid
-        let buttonTitle = "btn_register".localized
-
-        UIView.animate(withDuration: 0.2) {
-            self.registerButttonView.alpha = isValid ? 1.0 : 0.5
-
-            if var config = self.registerButttonView.configuration {
-                config.title = buttonTitle
-                config.baseForegroundColor = .white
-                config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer { incoming in
-                    var outgoing = incoming
-                    outgoing.foregroundColor = .white
-                    return outgoing
-                }
-                self.registerButttonView.configuration = config
-            } else {
-                self.registerButttonView.setTitle(buttonTitle, for: .normal)
-                self.registerButttonView.setTitleColor(.white, for: .normal)
-                self.registerButttonView.setTitleColor(.white, for: .disabled)
-            }
-        }
+        let title = "btn_register".localized
+        registerButttonView.updateState(isEnabled: isValid, title: title)
     }
-
+    
     private func setupAgreementLabel() {
         let fullText = "reg_terms_full".localized
         let linkText = "reg_terms_link".localized
-        
-        guard !fullText.isEmpty, !linkText.isEmpty else { return }
-        
-        let attributedString = NSMutableAttributedString(string: fullText)
-        let nsFullText = fullText as NSString
-        let range = nsFullText.range(of: linkText)
-        
-        if range.location != NSNotFound {
-            let linkColor = UIColor.systemBlue
-            attributedString.addAttributes([
-                .foregroundColor: linkColor,
-                .font: UIFont.boldSystemFont(ofSize: 14)
-            ], range: range)
-        }
-        agreementLabel.attributedText = attributedString
+        agreementLabel.attributedText = fullText.toClickableText(linkText: linkText)
         agreementLabel.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTermsTap(_:)))
         agreementLabel.addGestureRecognizer(tapGesture)
@@ -206,34 +172,15 @@ class RegistrationVC: UIViewController {
 
     // MARK: - Helpers
     private func setupDatePicker() {
-        datePicker.datePickerMode = .date
-        datePicker.preferredDatePickerStyle = .wheels
-        datePicker.maximumDate = Date()
-
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-
-        let done = UIBarButtonItem(
-            title: "reg_done".localized,
-            style: .prominent,
-            target: self,
-            action: #selector(donePressed)
-        )
-
-        let flexibleSpace = UIBarButtonItem(
-            barButtonSystemItem: .flexibleSpace,
-            target: nil,
-            action: nil
-        )
-        toolbar.setItems([flexibleSpace, done], animated: false)
-        userdob.textField.inputView = datePicker
-        userdob.textField.inputAccessoryView = toolbar
+        userdob.textField.setupDatePicker(target: self, doneAction: #selector(donePressed))
     }
 
     @objc private func donePressed() {
-        let dateString = datePicker.date.toString()
-        userdob.textField.text = dateString
-        viewModel.user.dob = dateString
+        if let datePicker = userdob.textField.inputView as? UIDatePicker {
+            let dateString = datePicker.date.toString()
+            userdob.textField.text = dateString
+            viewModel.user.dob = dateString
+        }
         view.endEditing(true)
         validate(textField: userdob.textField, isSilent: false)
         updateRegisterButtonState()
