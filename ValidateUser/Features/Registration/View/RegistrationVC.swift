@@ -148,25 +148,29 @@ class RegistrationVC: UIViewController {
         
         switch textField {
             
-            case username.textField:
-                username.setErrorState(!isSilent && !Validator.isValidName(text).isValid, errorMessage: Validator.isValidName(text).error)
-                
-            case userEmail.textField:
-                userEmail.setErrorState(!isSilent && !Validator.isValidEmail(text).isValid, errorMessage: Validator.isValidEmail(text).error)
+        case username.textField:
+            let res = viewModel.validateName(text)
+            username.setErrorState(!isSilent && !res.isValid, errorMessage: res.error)
             
-            case userPhonenumber.textField:
-                userPhonenumber.setErrorState(!isSilent && !Validator.isValidMobile(text).isValid, errorMessage: Validator.isValidMobile(text).error)
+        case userEmail.textField:
+            let res = viewModel.validateEmail(text)
+            userEmail.setErrorState(!isSilent && !res.isValid, errorMessage: res.error)
+        
+        case userPhonenumber.textField:
+            let res = viewModel.validateMobile(text)
+            userPhonenumber.setErrorState(!isSilent && !res.isValid, errorMessage: res.error)
 
-            case userdob.textField:
-                userdob.setErrorState(!isSilent && text.isEmpty, errorMessage: "reg_err_dob".localized)
-            
-            case userLinkedin.textField:
-                let result = Validator.isValidURL(text)
-                userLinkedin.setErrorState(!isSilent && !result, errorMessage: result ? nil : "reg_invalid_url".localized)
-                userLinkedin.setAsLink(result)
-                userLinkedin.textField.isUserInteractionEnabled = true
+        case userdob.textField:
+            let isEmpty = text.isEmpty
+            userdob.setErrorState(!isSilent && isEmpty, errorMessage: "reg_err_dob".localized)
+        
+        case userLinkedin.textField:
+            let isValid = viewModel.isValidURL(text)
+            userLinkedin.setErrorState(!isSilent && !isValid, errorMessage: isValid ? nil : "reg_invalid_url".localized)
+            userLinkedin.setAsLink(isValid)
+            userLinkedin.textField.isUserInteractionEnabled = true
 
-            default: break
+        default: break
         }
     }
 
@@ -221,7 +225,7 @@ extension RegistrationVC: UITextFieldDelegate, UITextViewDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if textField == userLinkedin.textField {
             let text = textField.text ?? ""
-            if Validator.isValidURL(text) && textField.isFirstResponder {
+            if viewModel.isValidURL(text) && textField.isFirstResponder {
                 handleLinkTap()
                 return false
             }

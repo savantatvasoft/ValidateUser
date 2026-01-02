@@ -10,7 +10,6 @@ class InputField: UIView {
     @IBOutlet weak var errorText: UILabel!
     @IBOutlet weak var leftImage: UIImageView!
 
-    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -90,7 +89,7 @@ class InputField: UIView {
         if isLink {
             textField.textColor = .systemBlue
         } else {
-            textField.textColor = .label // or your default dull color
+            textField.textColor = .label
         }
     }
 

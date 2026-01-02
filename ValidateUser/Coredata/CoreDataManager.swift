@@ -10,12 +10,10 @@ import CoreData
 import UIKit
 
 class CoreDataManager {
-    // Singleton instance to access from anywhere
     static let shared = CoreDataManager()
 
     private init() {}
 
-    // The container that holds the database
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "ValidateUser")
         container.loadPersistentStores { (_, error) in
@@ -26,12 +24,10 @@ class CoreDataManager {
         return container
     }()
 
-    // The context used for saving and fetching
     var context: NSManagedObjectContext {
         return persistentContainer.viewContext
     }
 
-    // Main save function
     func saveContext() {
         if context.hasChanges {
             do {
@@ -49,7 +45,7 @@ class CoreDataManager {
 
             do {
                 let results = try context.fetch(fetchRequest)
-                return results.first // Returns the specific user object
+                return results.first
             } catch {
                 print("Error fetching user: \(error)")
                 return nil

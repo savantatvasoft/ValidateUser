@@ -12,7 +12,7 @@ class UserInput: UIView {
 
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var image: UIImageView!
-    // MARK: - Init
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
