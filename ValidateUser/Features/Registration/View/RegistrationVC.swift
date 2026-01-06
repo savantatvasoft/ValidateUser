@@ -147,42 +147,40 @@ class RegistrationVC: UIViewController {
         let text = textField.text ?? ""
         
         switch textField {
+            case username.textField:
+                let res = viewModel.validateName(text)
+                username.setErrorState(!isSilent && !res.isValid, errorMessage: res.error)
+                
+            case userEmail.textField:
+                let res = viewModel.validateEmail(text)
+                userEmail.setErrorState(!isSilent && !res.isValid, errorMessage: res.error)
             
-        case username.textField:
-            let res = viewModel.validateName(text)
-            username.setErrorState(!isSilent && !res.isValid, errorMessage: res.error)
+            case userPhonenumber.textField:
+                let res = viewModel.validateMobile(text)
+                userPhonenumber.setErrorState(!isSilent && !res.isValid, errorMessage: res.error)
+
+            case userdob.textField:
+                let isEmpty = text.isEmpty
+                userdob.setErrorState(!isSilent && isEmpty, errorMessage: "reg_err_dob".localized)
             
-        case userEmail.textField:
-            let res = viewModel.validateEmail(text)
-            userEmail.setErrorState(!isSilent && !res.isValid, errorMessage: res.error)
-        
-        case userPhonenumber.textField:
-            let res = viewModel.validateMobile(text)
-            userPhonenumber.setErrorState(!isSilent && !res.isValid, errorMessage: res.error)
+            case userLinkedin.textField:
+                let isValid = viewModel.isValidURL(text)
+                userLinkedin.setErrorState(!isSilent && !isValid, errorMessage: isValid ? nil : "reg_invalid_url".localized)
+                userLinkedin.setAsLink(isValid)
+                userLinkedin.textField.isUserInteractionEnabled = true
 
-        case userdob.textField:
-            let isEmpty = text.isEmpty
-            userdob.setErrorState(!isSilent && isEmpty, errorMessage: "reg_err_dob".localized)
-        
-        case userLinkedin.textField:
-            let isValid = viewModel.isValidURL(text)
-            userLinkedin.setErrorState(!isSilent && !isValid, errorMessage: isValid ? nil : "reg_invalid_url".localized)
-            userLinkedin.setAsLink(isValid)
-            userLinkedin.textField.isUserInteractionEnabled = true
-
-        default: break
+            default: break
         }
     }
-
-    // MARK: - Helpers
+    
     private func setupDatePicker() {
         userdob.textField.setupDatePicker(target: self, doneAction: #selector(donePressed))
     }
 
     @objc private func donePressed() {
         if let datePicker = userdob.textField.inputView as? UIDatePicker {
-            let dateString = datePicker.date.toString()
-            userdob.textField.text = dateString
+            let dateString = datePicker.date
+            userdob.textField.text = dateString.toString()
             viewModel.user.dob = dateString
         }
         view.endEditing(true)
@@ -259,15 +257,13 @@ extension RegistrationVC: UIImagePickerControllerDelegate, UINavigationControlle
         picker.dismiss(animated: true)
 
         guard let provider = results.first?.itemProvider, provider.canLoadObject(ofClass: UIImage.self) else { return }
-
         provider.loadObject(ofClass: UIImage.self) { [weak self] image, _ in
             DispatchQueue.main.async {
-                if let selectedImage = image as? UIImage {
-                    self?.userImageView.image = selectedImage
-                    let base64String = self?.convertImageToBase64String(selectedImage)
-                    self?.viewModel.user.userImage = base64String
-                    self?.updateRegisterButtonState()
-                }
+                guard let self = self, let selectedImage = image as? UIImage else { return }
+                self.userImageView.image = selectedImage
+                let imageData = selectedImage.jpegData(compressionQuality: 0.8)
+                self.viewModel.user.userImage = imageData
+                self.updateRegisterButtonState()
             }
         }
     }
@@ -275,9 +271,9 @@ extension RegistrationVC: UIImagePickerControllerDelegate, UINavigationControlle
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         let selectedImage = (info[.editedImage] ?? info[.originalImage]) as? UIImage
         userImageView.image = selectedImage
-
         if let image = selectedImage {
-            viewModel.user.userImage = convertImageToBase64String(image)
+            let imageData = image.jpegData(compressionQuality: 0.8)
+            viewModel.user.userImage = imageData
         }
         picker.dismiss(animated: true)
         updateRegisterButtonState()

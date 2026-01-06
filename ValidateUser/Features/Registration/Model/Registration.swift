@@ -4,9 +4,9 @@ struct Registration {
     var name = ""
     var email = ""
     var phone = ""
-    var dob = ""
+    var dob: Date?
     var linkedinUrl = ""
     var description = ""
     var isTermsAccepted = false
-    var userImage: String?
+    var userImage: Data?
 }

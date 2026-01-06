@@ -20,10 +20,10 @@ extension UserEntity {
     @NSManaged public var name: String?
     @NSManaged public var email: String?
     @NSManaged public var phone: String?
-    @NSManaged public var dob: String?
+    @NSManaged public var dob: Date?
     @NSManaged public var linkedinUrl: String?
     @NSManaged public var userDescription: String?
-    @NSManaged public var userImage: String?
+    @NSManaged public var userImage: Data?
 
 }
 

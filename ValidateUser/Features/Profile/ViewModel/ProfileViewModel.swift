@@ -16,11 +16,9 @@ class ProfileViewModel {
     }
 
     func getProfileImage() -> UIImage? {
-
-            if let base64String = data.userImage,
-               let imageData = Data(base64Encoded: base64String) {
-                return UIImage(data: imageData)
-            }
-            return UIImage(systemName: "person.circle.fill")
+        if let imageData = data.userImage {
+            return UIImage(data: imageData)
         }
+        return UIImage(systemName: "person.circle.fill")
+    }
 }

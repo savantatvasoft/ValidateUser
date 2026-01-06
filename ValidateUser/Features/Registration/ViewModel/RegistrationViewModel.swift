@@ -12,13 +12,13 @@ class RegistrationViewModel {
     var user = Registration()
 
     var isFormValid: Bool {
-        return validateName(user.name).isValid &&
-               validateEmail(user.email).isValid &&
-               validateMobile(user.phone).isValid &&
-               isValidURL(user.linkedinUrl) &&
-               !user.dob.isEmpty &&
-               user.isTermsAccepted &&
-               user.userImage != nil
+        return  validateName(user.name).isValid &&
+                validateEmail(user.email).isValid &&
+                validateMobile(user.phone).isValid &&
+                isValidURL(user.linkedinUrl) &&
+                user.dob != nil &&
+                user.isTermsAccepted &&
+                user.userImage != nil
     }
     
     func validateName(_ text: String?) -> ValidationResult {
@@ -87,8 +87,6 @@ class RegistrationViewModel {
     }
     
     func updateUserImage(_ image: UIImage) {
-        if let base64String = image.jpegData(compressionQuality: 0.7)?.base64EncodedString() {
-            user.userImage = base64String
-        }
+        user.userImage = image.jpegData(compressionQuality: 0.8)
     }
 }
