@@ -7,57 +7,59 @@
 
 import UIKit
 
-@IBDesignable
-class BorderedView: UIView {
-    
-    @IBInspectable var borderColorValue: UIColor? {
-        didSet { updateBorderColor() }
+protocol BorderStyling {
+    var borderColorValue: UIColor? { get set }
+    var borderWidthValue: CGFloat { get set }
+    var cornerRadiusValue: CGFloat { get set }
+}
+
+extension BorderStyling where Self: UIView {
+    func applyBorderStyle() {
+        layer.borderColor = borderColorValue?.resolvedColor(with: traitCollection).cgColor
+        layer.borderWidth = borderWidthValue
+        layer.cornerRadius = cornerRadiusValue
+        layer.masksToBounds = cornerRadiusValue > 0
     }
     
-    @IBInspectable var borderWidthValue: CGFloat = 0 {
-        didSet { layer.borderWidth = borderWidthValue }
-    }
-    
-    @IBInspectable var cornerRadiusValue: CGFloat = 0 {
-        didSet {
-            layer.cornerRadius = cornerRadiusValue
-            layer.masksToBounds = cornerRadiusValue > 0
+    func setupBorderTraitObservation() {
+        if #available(iOS 17.0, *) {
+            registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (self: Self, previousTraitCollection: UITraitCollection) in
+                self.applyBorderStyle()
+            }
         }
     }
+}
 
+@IBDesignable
+class BorderedView: UIView, BorderStyling {
+    @IBInspectable var borderColorValue: UIColor? { didSet { applyBorderStyle() } }
+    @IBInspectable var borderWidthValue: CGFloat = 0 { didSet { applyBorderStyle() } }
+    @IBInspectable var cornerRadiusValue: CGFloat = 0 { didSet { applyBorderStyle() } }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupTraitObservation()
+        setupBorderTraitObservation()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        setupTraitObservation()
+        setupBorderTraitObservation()
+    }
+}
+
+@IBDesignable
+class BorderedImageView: UIImageView, BorderStyling {
+    @IBInspectable var borderColorValue: UIColor? { didSet { applyBorderStyle() } }
+    @IBInspectable var borderWidthValue: CGFloat = 0 { didSet { applyBorderStyle() } }
+    @IBInspectable var cornerRadiusValue: CGFloat = 0 { didSet { applyBorderStyle() } }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupBorderTraitObservation()
     }
     
-    // MARK: - iOS 17+ Trait Change API
-    private func setupTraitObservation() {
-        if #available(iOS 17.0, *) {
-            registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (self: Self, previousTraitCollection: UITraitCollection) in
-                self.updateBorderColor()
-            }
-        }
-    }
-    
-    // MARK: - iOS 16 and earlier (Fallback)
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        if #available(iOS 17.0, *) {
-            // Handled by registerForTraitChanges
-        } else {
-            if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-                updateBorderColor()
-            }
-        }
-    }
-    
-    private func updateBorderColor() {
-        layer.borderColor = borderColorValue?.resolvedColor(with: traitCollection).cgColor
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupBorderTraitObservation()
     }
 }
