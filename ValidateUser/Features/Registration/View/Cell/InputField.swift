@@ -9,10 +9,8 @@ class InputField: UIView {
     @IBOutlet weak var rightImage: UIImageView!
     @IBOutlet weak var errorText: UILabel!
     @IBOutlet weak var leftImage: UIImageView!
-
     @IBOutlet weak var errorTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var errorHeightConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var leftImageWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var leftImageLeadingConstraint: NSLayoutConstraint!
     override init(frame: CGRect) {
@@ -57,7 +55,7 @@ class InputField: UIView {
     func setLeftImage(_ image: UIImage?) {
         if let img = image {
             leftImageWidthConstraint.constant = 24
-            leftImageLeadingConstraint.constant = 8
+            leftImageLeadingConstraint.constant = 10
             leftImage.image = img
             leftImage.isHidden = false
         } else {
@@ -79,7 +77,7 @@ class InputField: UIView {
             }
             
             UIView.animate(withDuration: 0.3, animations: {
-                self.errorTopConstraint.constant = hasError ? 7 : 0
+                self.errorTopConstraint.constant = hasError ? 5 : 0
                 self.errorHeightConstraint.constant = hasError ? 30 : 0
                 self.errorContainer.alpha = hasError ? 1 : 0
 
