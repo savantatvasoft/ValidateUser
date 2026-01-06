@@ -155,23 +155,11 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0xR-tH-v7t" userLabel="userProfile">
-                                                <rect key="frame" x="151.66666666666666" y="172" width="90" height="90"/>
-                                                <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Zeb-KD-gOD">
-                                                        <rect key="frame" x="0.0" y="0.6666666666666643" width="90" height="88.666666666666686"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="Zeb-KD-gOD" secondAttribute="height" multiplier="1:1" id="RGB-eM-6Ja"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Zeb-KD-gOD">
+                                                <rect key="frame" x="151.66666666666666" y="172.66666666666666" width="90" height="88.666666666666714"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="90" id="3pl-PU-VEy"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Zeb-KD-gOD" secondAttribute="trailing" id="VpZ-Os-GP4"/>
-                                                    <constraint firstItem="Zeb-KD-gOD" firstAttribute="top" secondItem="0xR-tH-v7t" secondAttribute="top" id="WU9-DL-nF5"/>
-                                                    <constraint firstItem="Zeb-KD-gOD" firstAttribute="leading" secondItem="0xR-tH-v7t" secondAttribute="leading" id="ciA-zO-hch"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Zeb-KD-gOD" secondAttribute="bottom" id="hvG-zL-4fn"/>
+                                                    <constraint firstAttribute="width" constant="90" id="0D5-jm-kVZ"/>
+                                                    <constraint firstAttribute="width" secondItem="Zeb-KD-gOD" secondAttribute="height" multiplier="1:1" id="RGB-eM-6Ja"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -183,31 +171,19 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                         <real key="value" value="4"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
-                                                        <integer key="value" value="5"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
-                                                        <size key="value" width="0.0" height="4"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
-                                                        <color key="value" systemColor="systemPinkColor"/>
-                                                    </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
-                                            </view>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="kRx-mo-QcB" secondAttribute="trailing" constant="25" id="0da-rv-Gb3"/>
-                                            <constraint firstItem="0xR-tH-v7t" firstAttribute="centerX" secondItem="WcE-1W-IwO" secondAttribute="centerX" id="BuU-RQ-oVc"/>
                                             <constraint firstItem="wQR-L2-IUF" firstAttribute="top" secondItem="MvQ-fy-geb" secondAttribute="bottom" constant="20" id="Fao-aX-n1y"/>
-                                            <constraint firstItem="0xR-tH-v7t" firstAttribute="centerY" secondItem="kRx-mo-QcB" secondAttribute="top" id="NWk-w6-bEH"/>
+                                            <constraint firstItem="Zeb-KD-gOD" firstAttribute="centerY" secondItem="kRx-mo-QcB" secondAttribute="top" id="N7P-bj-5hl"/>
                                             <constraint firstItem="MvQ-fy-geb" firstAttribute="centerX" secondItem="WcE-1W-IwO" secondAttribute="centerX" id="SXO-WT-Saf"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="kRx-mo-QcB" secondAttribute="bottom" id="WiK-1s-bHo"/>
                                             <constraint firstItem="MvQ-fy-geb" firstAttribute="top" secondItem="WcE-1W-IwO" secondAttribute="top" constant="20" id="bVg-OX-H7y"/>
                                             <constraint firstItem="kRx-mo-QcB" firstAttribute="leading" secondItem="WcE-1W-IwO" secondAttribute="leading" constant="25" id="eRy-2k-Jc4"/>
+                                            <constraint firstItem="Zeb-KD-gOD" firstAttribute="centerX" secondItem="kRx-mo-QcB" secondAttribute="centerX" id="ea6-z3-R4E"/>
                                             <constraint firstItem="kRx-mo-QcB" firstAttribute="top" secondItem="wQR-L2-IUF" secondAttribute="bottom" constant="75" id="qhZ-BO-H0u"/>
                                             <constraint firstItem="wQR-L2-IUF" firstAttribute="centerX" secondItem="WcE-1W-IwO" secondAttribute="centerX" id="soG-1N-QV3"/>
                                         </constraints>
@@ -281,9 +257,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
