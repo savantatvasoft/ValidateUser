@@ -57,25 +57,16 @@
                                                         <rect key="frame" x="12" y="154.66666666666669" width="319" height="40"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="QDA-2d-lew"/>
-                                                        </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udl-z5-hno" customClass="UserInput" customModule="ValidateUser" customModuleProvider="target">
                                                         <rect key="frame" x="12" y="206.66666666666669" width="319" height="40"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="ngr-Ej-ya3"/>
-                                                        </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdl-Vv-ZLN" customClass="UserInput" customModule="ValidateUser" customModuleProvider="target">
                                                         <rect key="frame" x="12" y="258.66666666666669" width="319" height="40"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="Qpw-AX-JOJ"/>
-                                                        </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="343" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="aK5-rX-FT9">
                                                         <rect key="frame" x="12" y="310.66666666666663" width="319" height="64"/>
@@ -130,24 +121,27 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
+                                                    <constraint firstItem="sx7-Af-3yx" firstAttribute="leading" secondItem="mgB-q3-mSG" secondAttribute="leading" id="0fT-Lo-YCy"/>
+                                                    <constraint firstItem="jdl-Vv-ZLN" firstAttribute="trailing" secondItem="mgB-q3-mSG" secondAttribute="trailing" id="4CL-vj-NaW"/>
                                                     <constraint firstItem="udl-z5-hno" firstAttribute="top" secondItem="sx7-Af-3yx" secondAttribute="bottom" constant="12" id="5il-tQ-wVx"/>
+                                                    <constraint firstItem="aK5-rX-FT9" firstAttribute="leading" secondItem="mgB-q3-mSG" secondAttribute="leading" id="6Ng-5O-A4K"/>
                                                     <constraint firstItem="jdl-Vv-ZLN" firstAttribute="top" secondItem="udl-z5-hno" secondAttribute="bottom" constant="12" id="9R3-25-9Af"/>
                                                     <constraint firstAttribute="trailing" secondItem="mgB-q3-mSG" secondAttribute="trailing" constant="12" id="BlE-Y0-0J7"/>
-                                                    <constraint firstItem="jdl-Vv-ZLN" firstAttribute="leading" secondItem="kRx-mo-QcB" secondAttribute="leading" constant="12" id="Fiw-O7-smm"/>
                                                     <constraint firstItem="sx7-Af-3yx" firstAttribute="top" secondItem="mgB-q3-mSG" secondAttribute="bottom" constant="12" id="Goj-6O-83C"/>
-                                                    <constraint firstAttribute="trailing" secondItem="udl-z5-hno" secondAttribute="trailing" constant="12" id="I7a-Mn-Ikv"/>
                                                     <constraint firstItem="mgB-q3-mSG" firstAttribute="leading" secondItem="kRx-mo-QcB" secondAttribute="leading" constant="12" id="IH6-58-EsF"/>
                                                     <constraint firstItem="aK5-rX-FT9" firstAttribute="top" secondItem="jdl-Vv-ZLN" secondAttribute="bottom" constant="12" id="Jxe-eJ-EpU"/>
                                                     <constraint firstItem="5Xf-yS-8ba" firstAttribute="top" secondItem="kRx-mo-QcB" secondAttribute="top" constant="48" id="MJI-Md-lR6"/>
-                                                    <constraint firstItem="udl-z5-hno" firstAttribute="leading" secondItem="kRx-mo-QcB" secondAttribute="leading" constant="12" id="Q5O-fy-weh"/>
-                                                    <constraint firstAttribute="trailing" secondItem="jdl-Vv-ZLN" secondAttribute="trailing" constant="12" id="QVW-6J-DWo"/>
+                                                    <constraint firstItem="jdl-Vv-ZLN" firstAttribute="leading" secondItem="mgB-q3-mSG" secondAttribute="leading" id="MWZ-dE-LpT"/>
                                                     <constraint firstAttribute="bottom" secondItem="aK5-rX-FT9" secondAttribute="bottom" constant="20" id="V0K-7K-Nos"/>
                                                     <constraint firstItem="mgB-q3-mSG" firstAttribute="top" secondItem="5Xf-yS-8ba" secondAttribute="bottom" constant="30" id="ZYO-K9-Hgg"/>
-                                                    <constraint firstAttribute="trailing" secondItem="sx7-Af-3yx" secondAttribute="trailing" constant="12" id="jKy-Ld-iom"/>
-                                                    <constraint firstAttribute="trailing" secondItem="aK5-rX-FT9" secondAttribute="trailing" constant="12" id="lJz-4j-1Jk"/>
+                                                    <constraint firstItem="udl-z5-hno" firstAttribute="trailing" secondItem="mgB-q3-mSG" secondAttribute="trailing" id="bbk-gb-yg6"/>
+                                                    <constraint firstItem="udl-z5-hno" firstAttribute="leading" secondItem="mgB-q3-mSG" secondAttribute="leading" id="k3g-8c-4Fj"/>
                                                     <constraint firstItem="5Xf-yS-8ba" firstAttribute="centerX" secondItem="kRx-mo-QcB" secondAttribute="centerX" id="mZw-a6-GVZ"/>
-                                                    <constraint firstItem="sx7-Af-3yx" firstAttribute="leading" secondItem="kRx-mo-QcB" secondAttribute="leading" constant="12" id="qVa-QT-EEC"/>
-                                                    <constraint firstItem="aK5-rX-FT9" firstAttribute="leading" secondItem="kRx-mo-QcB" secondAttribute="leading" constant="12" id="trw-oV-DAl"/>
+                                                    <constraint firstItem="sx7-Af-3yx" firstAttribute="trailing" secondItem="mgB-q3-mSG" secondAttribute="trailing" id="nnU-IH-NHC"/>
+                                                    <constraint firstItem="jdl-Vv-ZLN" firstAttribute="height" secondItem="mgB-q3-mSG" secondAttribute="height" id="noM-jP-FZz"/>
+                                                    <constraint firstItem="udl-z5-hno" firstAttribute="height" secondItem="mgB-q3-mSG" secondAttribute="height" id="pKX-al-MWN"/>
+                                                    <constraint firstItem="aK5-rX-FT9" firstAttribute="trailing" secondItem="mgB-q3-mSG" secondAttribute="trailing" id="un6-O8-PoB"/>
+                                                    <constraint firstItem="sx7-Af-3yx" firstAttribute="height" secondItem="mgB-q3-mSG" secondAttribute="height" id="wUY-Q3-gMH"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -280,13 +274,13 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
