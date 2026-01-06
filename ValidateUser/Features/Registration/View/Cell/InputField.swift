@@ -10,6 +10,11 @@ class InputField: UIView {
     @IBOutlet weak var errorText: UILabel!
     @IBOutlet weak var leftImage: UIImageView!
 
+    @IBOutlet weak var errorTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var errorHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var leftImageWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var leftImageLeadingConstraint: NSLayoutConstraint!
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -36,17 +41,13 @@ class InputField: UIView {
     }
 
     private func setupUI() {
-
-        if let stackView = leftImage.superview as? UIStackView {
-                stackView.isLayoutMarginsRelativeArrangement = true
-                stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 0)
-
-        }
-
+        errorTopConstraint.constant = 0
+        errorHeightConstraint.constant = 0
         errorContainer.isHidden = true
+        errorContainer.clipsToBounds = true
+        errorContainer.alpha = 0
         rightImage.isHidden = true
-        leftImage.isHidden = true
-        leftImage.image = nil
+        setLeftImage(nil)
     }
 
     func setPlaceholder(_ text: String) {
@@ -55,9 +56,13 @@ class InputField: UIView {
 
     func setLeftImage(_ image: UIImage?) {
         if let img = image {
+            leftImageWidthConstraint.constant = 24
+            leftImageLeadingConstraint.constant = 8
             leftImage.image = img
             leftImage.isHidden = false
         } else {
+            leftImageWidthConstraint.constant = 0
+            leftImageLeadingConstraint.constant = 4
             leftImage.isHidden = true
             leftImage.image = nil
         }
@@ -67,9 +72,16 @@ class InputField: UIView {
     func setErrorState(_ hasError: Bool, errorMessage: String? = nil) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            UIView.animate(withDuration: 0.3) {
-                self.errorText.text = errorMessage
-                self.errorContainer.isHidden = !hasError
+            
+            self.errorText.text = errorMessage
+            if hasError {
+                self.errorContainer.isHidden = false
+            }
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                self.errorTopConstraint.constant = hasError ? 7 : 0
+                self.errorHeightConstraint.constant = hasError ? 30 : 0
+                self.errorContainer.alpha = hasError ? 1 : 0
 
                 let isTextEmpty = self.textField.text?.isEmpty ?? true
                 if isTextEmpty {
@@ -79,9 +91,13 @@ class InputField: UIView {
                     let imageName = hasError ? Assets.warningIcon : Assets.successIcon
                     self.rightImage.image = UIImage(named: imageName)
                 }
-
+                
                 self.layoutIfNeeded()
-            }
+            }, completion: { _ in
+                if !hasError {
+                    self.errorContainer.isHidden = true
+                }
+            })
         }
     }
 
@@ -92,5 +108,4 @@ class InputField: UIView {
             textField.textColor = .label
         }
     }
-
 }
