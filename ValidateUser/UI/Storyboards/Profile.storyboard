@@ -68,7 +68,7 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
-                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="343" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="aK5-rX-FT9">
+                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="343" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="aK5-rX-FT9" customClass="BorderedView" customModule="ValidateUser" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="304.66666666666663" width="323" height="66"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMx-PS-hae">
@@ -107,14 +107,14 @@
                                                             <constraint firstItem="5Pq-TC-XxK" firstAttribute="top" secondItem="aK5-rX-FT9" secondAttribute="top" constant="10" id="ues-pk-YpE"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColorValue">
+                                                                <color key="value" name="PrimaryBorder"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidthValue">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusValue">
                                                                 <real key="value" value="7"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                <color key="value" systemColor="opaqueSeparatorColor"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                <real key="value" value="0.5"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
@@ -148,10 +148,7 @@
                                                         <real key="value" value="10"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" systemColor="opaqueSeparatorColor"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                        <real key="value" value="0.5"/>
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
@@ -159,26 +156,31 @@
                                                 <rect key="frame" x="151.66666666666666" y="172" width="90" height="90"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Zeb-KD-gOD">
-                                                        <rect key="frame" x="0.0" y="0.6666666666666643" width="90" height="88.666666666666686"/>
+                                                        <rect key="frame" x="5" y="5.6666666666666838" width="80" height="78.666666666666686"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" secondItem="Zeb-KD-gOD" secondAttribute="height" multiplier="1:1" id="RGB-eM-6Ja"/>
+                                                            <constraint firstAttribute="width" secondItem="Zeb-KD-gOD" secondAttribute="height" multiplier="1:1" id="6Ob-Wl-vYU"/>
+                                                            <constraint firstAttribute="width" constant="80" id="Cn5-gj-TbE"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="40"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="90" id="3pl-PU-VEy"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Zeb-KD-gOD" secondAttribute="trailing" id="VpZ-Os-GP4"/>
-                                                    <constraint firstItem="Zeb-KD-gOD" firstAttribute="top" secondItem="0xR-tH-v7t" secondAttribute="top" id="WU9-DL-nF5"/>
-                                                    <constraint firstItem="Zeb-KD-gOD" firstAttribute="leading" secondItem="0xR-tH-v7t" secondAttribute="leading" id="ciA-zO-hch"/>
-                                                    <constraint firstAttribute="bottom" secondItem="Zeb-KD-gOD" secondAttribute="bottom" id="hvG-zL-4fn"/>
+                                                    <constraint firstItem="Zeb-KD-gOD" firstAttribute="centerX" secondItem="0xR-tH-v7t" secondAttribute="centerX" id="5pA-EW-x7v"/>
+                                                    <constraint firstAttribute="width" secondItem="0xR-tH-v7t" secondAttribute="height" multiplier="1:1" id="GY9-V5-5ca"/>
+                                                    <constraint firstItem="Zeb-KD-gOD" firstAttribute="centerY" secondItem="0xR-tH-v7t" secondAttribute="centerY" id="WNq-tu-TNU"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                         <real key="value" value="45"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                        <color key="value" systemColor="systemBackgroundColor"/>
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                         <real key="value" value="4"/>
@@ -223,7 +225,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
-                        <color key="backgroundColor" name="GradientTop"/>
+                        <color key="backgroundColor" name="BackgroundSecondaryColor"/>
                         <constraints>
                             <constraint firstItem="qBC-b3-zIy" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="JGK-6g-IGN"/>
                             <constraint firstItem="qBC-b3-zIy" firstAttribute="trailing" secondItem="5EZ-qb-Rvc" secondAttribute="trailing" id="L5H-dy-HEZ"/>
@@ -267,17 +269,14 @@
         <namedColor name="BackgroundSecondaryColor">
             <color red="0.99607843137254903" green="0.99607843137254903" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="GradientTop">
-            <color red="0.99607843137254903" green="0.99607843137254903" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="Primary">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
+        <namedColor name="PrimaryBorder">
+            <color red="0.82352941176470584" green="0.82352941176470584" blue="0.82352941176470584" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
