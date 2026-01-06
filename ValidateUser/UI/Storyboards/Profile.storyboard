@@ -31,13 +31,13 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your account created successfully!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQR-L2-IUF">
-                                                <rect key="frame" x="73.333333333333329" y="120" width="246.66666666666669" height="22"/>
-                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                                <rect key="frame" x="57.666666666666657" y="110" width="277.66666666666674" height="24.666666666666657"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="313" placeholderIntrinsicHeight="128" translatesAutoresizingMaskIntoConstraints="NO" id="kRx-mo-QcB" userLabel="profileInfo">
-                                                <rect key="frame" x="25" y="217.00000000000003" width="343" height="390.66666666666674"/>
+                                                <rect key="frame" x="25" y="194.66666666666666" width="343" height="390.66666666666674"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Carter" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Xf-yS-8ba">
                                                         <rect key="frame" x="123.33333333333334" y="50" width="96.666666666666657" height="24.666666666666671"/>
@@ -46,7 +46,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mgB-q3-mSG" customClass="UserInput" customModule="ValidateUser" customModuleProvider="target">
-                                                        <rect key="frame" x="10" y="104.66666666666669" width="323" height="40"/>
+                                                        <rect key="frame" x="10" y="104.66666666666663" width="323" height="40"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
@@ -54,22 +54,22 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sx7-Af-3yx" customClass="UserInput" customModule="ValidateUser" customModuleProvider="target">
-                                                        <rect key="frame" x="10" y="154.66666666666669" width="323" height="40"/>
+                                                        <rect key="frame" x="10" y="154.66666666666663" width="323" height="40"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="udl-z5-hno" customClass="UserInput" customModule="ValidateUser" customModuleProvider="target">
-                                                        <rect key="frame" x="10" y="204.66666666666663" width="323" height="40"/>
+                                                        <rect key="frame" x="10" y="204.66666666666669" width="323" height="40"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jdl-Vv-ZLN" customClass="UserInput" customModule="ValidateUser" customModuleProvider="target">
-                                                        <rect key="frame" x="10" y="254.66666666666663" width="323" height="40"/>
+                                                        <rect key="frame" x="10" y="254.66666666666669" width="323" height="40"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="343" placeholderIntrinsicHeight="40" translatesAutoresizingMaskIntoConstraints="NO" id="aK5-rX-FT9" customClass="BorderedView" customModule="ValidateUser" customModuleProvider="target">
-                                                        <rect key="frame" x="10" y="304.66666666666663" width="323" height="66"/>
+                                                        <rect key="frame" x="10" y="304.66666666666669" width="323" height="66"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMx-PS-hae">
                                                                 <rect key="frame" x="44" y="10.000000000000002" width="62" height="20.666666666666671"/>
@@ -77,7 +77,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a94-Nz-zZ2">
-                                                                <rect key="frame" x="45" y="30.666666666666746" width="268" height="35.333333333333343"/>
+                                                                <rect key="frame" x="45" y="30.666666666666632" width="268" height="35.333333333333343"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="n25-vp-hU2"/>
@@ -153,7 +153,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.crop.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Zeb-KD-gOD" customClass="BorderedImageView" customModule="ValidateUser" customModuleProvider="target">
-                                                <rect key="frame" x="156.66666666666666" y="177.66666666666666" width="80" height="78.666666666666714"/>
+                                                <rect key="frame" x="156.66666666666666" y="155.33333333333334" width="80" height="78.666666666666686"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="Zeb-KD-gOD" secondAttribute="height" multiplier="1:1" id="6Ob-Wl-vYU"/>
                                                     <constraint firstAttribute="width" constant="80" id="Cn5-gj-TbE"/>
@@ -177,14 +177,14 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="kRx-mo-QcB" secondAttribute="trailing" constant="25" id="0da-rv-Gb3"/>
-                                            <constraint firstItem="wQR-L2-IUF" firstAttribute="top" secondItem="MvQ-fy-geb" secondAttribute="bottom" constant="20" id="Fao-aX-n1y"/>
+                                            <constraint firstItem="wQR-L2-IUF" firstAttribute="top" secondItem="MvQ-fy-geb" secondAttribute="bottom" constant="10" id="Fao-aX-n1y"/>
                                             <constraint firstItem="MvQ-fy-geb" firstAttribute="centerX" secondItem="WcE-1W-IwO" secondAttribute="centerX" id="SXO-WT-Saf"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="kRx-mo-QcB" secondAttribute="bottom" id="WiK-1s-bHo"/>
                                             <constraint firstItem="MvQ-fy-geb" firstAttribute="top" secondItem="WcE-1W-IwO" secondAttribute="top" constant="20" id="bVg-OX-H7y"/>
                                             <constraint firstItem="kRx-mo-QcB" firstAttribute="leading" secondItem="WcE-1W-IwO" secondAttribute="leading" constant="25" id="eRy-2k-Jc4"/>
                                             <constraint firstItem="Zeb-KD-gOD" firstAttribute="centerX" secondItem="kRx-mo-QcB" secondAttribute="centerX" id="jKP-N1-btB"/>
                                             <constraint firstItem="Zeb-KD-gOD" firstAttribute="centerY" secondItem="kRx-mo-QcB" secondAttribute="top" id="my6-lV-5H2"/>
-                                            <constraint firstItem="kRx-mo-QcB" firstAttribute="top" secondItem="wQR-L2-IUF" secondAttribute="bottom" constant="75" id="qhZ-BO-H0u"/>
+                                            <constraint firstItem="kRx-mo-QcB" firstAttribute="top" secondItem="wQR-L2-IUF" secondAttribute="bottom" constant="60" id="qhZ-BO-H0u"/>
                                             <constraint firstItem="wQR-L2-IUF" firstAttribute="centerX" secondItem="WcE-1W-IwO" secondAttribute="centerX" id="soG-1N-QV3"/>
                                         </constraints>
                                     </view>
@@ -238,10 +238,10 @@
         <image name="Big_TickMark" width="480" height="480"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="BackgroundPrimaryColor">
-            <color red="0.84313725490196079" green="0.84313725490196079" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.99607843137254903" green="0.99607843137254903" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="BackgroundSecondaryColor">
-            <color red="0.99607843137254903" green="0.99607843137254903" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.84313725490196079" green="0.84313725490196079" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Primary">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

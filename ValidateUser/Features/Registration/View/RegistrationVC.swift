@@ -174,6 +174,8 @@ class RegistrationVC: UIViewController {
     }
     
     private func setupDatePicker() {
+        userdob.isUserInteractionEnabled = true
+        userdob.textField.tintColor = .clear
         userdob.textField.setupDatePicker(target: self, doneAction: #selector(donePressed))
     }
 

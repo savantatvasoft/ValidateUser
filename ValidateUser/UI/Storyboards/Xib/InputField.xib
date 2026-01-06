@@ -119,7 +119,7 @@
                                     <color key="value" name="Warning"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidthValue">
-                                    <real key="value" value="1"/>
+                                    <real key="value" value="0.5"/>
                                 </userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusValue">
                                     <real key="value" value="7"/>
