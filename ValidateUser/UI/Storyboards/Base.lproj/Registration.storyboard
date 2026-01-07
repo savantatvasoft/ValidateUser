@@ -135,7 +135,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                         </subviews>
-                                                        <color key="backgroundColor" name="Primary"/>
+                                                        <color key="backgroundColor" name="AppPrimary"/>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="jWC-MD-wPm" secondAttribute="bottom" constant="8" id="6yb-0A-D0P"/>
                                                             <constraint firstItem="hgO-8D-Dyv" firstAttribute="leading" secondItem="3uL-Is-ySt" secondAttribute="leading" constant="10" id="BYB-zj-GdC"/>
@@ -147,7 +147,7 @@
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColorValue">
-                                                                <color key="value" name="PrimaryBorder"/>
+                                                                <color key="value" name="AppBorder"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidthValue">
                                                                 <real key="value" value="0.5"/>
@@ -282,10 +282,13 @@
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="topColor">
-                                <color key="value" name="BackgroundPrimaryColor"/>
+                                <color key="value">
+                                    <string key="name">AppBackgroundTop
+</string>
+                                </color>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="color" keyPath="bottomColor">
-                                <color key="value" name="BackgroundSecondaryColor"/>
+                                <color key="value" name="AppBackgroundBottom"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
@@ -345,17 +348,19 @@
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="BackgroundPrimaryColor">
-            <color red="0.99607843137254903" green="0.99607843137254903" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="BackgroundSecondaryColor">
+        <namedColor name="AppBackgroundBottom">
             <color red="0.84313725490196079" green="0.84313725490196079" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="Primary">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <namedColor>
+            <string key="name">AppBackgroundTop
+</string>
+            <color red="0.99607843137254903" green="0.99607843137254903" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="PrimaryBorder">
+        <namedColor name="AppBorder">
             <color red="0.82352941176470584" green="0.82352941176470584" blue="0.82352941176470584" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppPrimary">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>
         <namedColor name="ProfileTint">
             <color red="0.84313725490196079" green="0.84313725490196079" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
