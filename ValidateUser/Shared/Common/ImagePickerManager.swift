@@ -18,22 +18,17 @@ class ImagePickerManager: NSObject {
 
     func showOptions(sourceView: UIView) {
         let alert = UIAlertController(title: "reg_profile".localized, message: "reg_source".localized, preferredStyle: .actionSheet)
-
         alert.addAction(UIAlertAction(title: "reg_camera".localized, style: .default) { _ in
             self.presentCamera()
         })
-
         alert.addAction(UIAlertAction(title: "reg_ph_library".localized, style: .default) { _ in
             self.presentPhotoPicker()
         })
-
         alert.addAction(UIAlertAction(title: "reg_cancel".localized, style: .cancel))
-
         if let popover = alert.popoverPresentationController {
             popover.sourceView = sourceView
             popover.sourceRect = sourceView.bounds
         }
-
         viewController?.present(alert, animated: true)
     }
 

@@ -9,7 +9,7 @@ import UIKit
 import SafariServices
 
 struct WebViewManager {
-    /// Use this to open any URL string in a standard Safari popup
+
     static func open(urlStr: String?, from vc: UIViewController) {
         guard let url = URLFormatter.format(urlStr) else { return }
 

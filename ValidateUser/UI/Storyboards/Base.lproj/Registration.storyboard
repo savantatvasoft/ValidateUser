@@ -52,7 +52,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Add Photo" cornerStyle="capsule" titleAlignment="center">
                                                     <fontDescription key="titleFontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
-                                                    <color key="baseBackgroundColor" name="AccentColor"/>
+                                                    <color key="baseBackgroundColor" name="AppButton"/>
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="onAddImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bdz-qr-zO8"/>
@@ -197,10 +197,10 @@
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="filled" title="Register" cornerStyle="fixed">
                                                             <backgroundConfiguration key="background">
-                                                                <color key="backgroundColor" name="AccentColor"/>
+                                                                <color key="backgroundColor" name="AppButton"/>
                                                             </backgroundConfiguration>
                                                             <fontDescription key="titleFontDescription" name="ArialHebrew-Bold" family="Arial Hebrew" pointSize="16"/>
-                                                            <color key="baseBackgroundColor" name="AccentColor"/>
+                                                            <color key="baseBackgroundColor" name="AppButton"/>
                                                         </buttonConfiguration>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -345,9 +345,6 @@
     <resources>
         <image name="Square" width="512" height="512"/>
         <image name="person.circle.fill" catalog="system" width="128" height="123"/>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="AppBackgroundBottom">
             <color red="0.84313725490196079" green="0.84313725490196079" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -358,6 +355,9 @@
         </namedColor>
         <namedColor name="AppBorder">
             <color red="0.82352941176470584" green="0.82352941176470584" blue="0.82352941176470584" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppButton">
+            <color red="0.0" green="0.4779999852180481" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="AppPrimary">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

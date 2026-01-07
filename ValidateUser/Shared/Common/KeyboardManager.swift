@@ -8,6 +8,7 @@
 import UIKit
 
 class KeyboardManager {
+    
     private weak var scrollView: UIScrollView?
     private weak var viewController: UIViewController?
     private let extraPadding: CGFloat = 40
