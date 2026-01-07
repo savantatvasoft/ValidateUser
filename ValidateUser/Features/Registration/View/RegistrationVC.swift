@@ -47,28 +47,40 @@ class RegistrationVC: UIViewController {
 
     // MARK: - Setup Methods
     private func setupUI() {
-        setupDatePicker()
-        setupAgreementLabel()
         configureInputFields()
         updateRegisterButtonState()
     }
 
     private func configureInputFields() {
+        let fullText = "reg_terms_full".localized
+        let linkText = "reg_terms_link".localized
+
         username.setPlaceholder("reg_ph_name".localized)
         userEmail.setPlaceholder("reg_ph_email".localized)
+
         userdob.setPlaceholder("reg_ph_dob".localized)
+        userdob.isUserInteractionEnabled = true
+        userdob.textField.tintColor = .clear
+        userdob.textField.setupDatePicker(target: self, doneAction: #selector(donePressed))
         userPhonenumber.setPlaceholder("reg_ph_phone".localized)
-        userLinkedin.setPlaceholder("reg_ph_linkedin".localized)
         userPhonenumber.textField.keyboardType = .numberPad
+
+        userLinkedin.setPlaceholder("reg_ph_linkedin".localized)
         userLinkedin.textField.keyboardType = .URL
         userLinkedin.textField.autocapitalizationType = .none
         userLinkedin.setLeftImage(UIImage(named: Assets.linkedInIcon))
         userLinkedin.textField.delegate = self
+
         userDescriptionTextView.delegate = self
         userDescriptionTextView.isScrollEnabled = false
         userDescriptionTextView.textContainer.lineFragmentPadding = 0
         userLinkedin.textField.clearButtonMode = .whileEditing
         updatePlaceholderVisibility()
+
+        agreementLabel.attributedText = fullText.toClickableText(linkText: linkText)
+        agreementLabel.isUserInteractionEnabled = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTermsTap(_:)))
+        agreementLabel.addGestureRecognizer(tapGesture)
 
         let fields = [username, userEmail, userdob, userPhonenumber, userLinkedin].compactMap { $0 }
         fields.forEach { field in
@@ -80,7 +92,6 @@ class RegistrationVC: UIViewController {
         userLinkedin.addGestureRecognizer(doubleTap)
     }
 
-    // MARK: - Actions
     @objc private func onTyping(_ textField: UITextField) {
         let text = textField.text ?? ""
 
@@ -112,11 +123,9 @@ class RegistrationVC: UIViewController {
             guard let self = self else { return }
 
             if exists {
-                AlertManager.showAlert(on: self,
-                                       title: "alert_error_title".localized,
-                                       message: "alert_exists_msg".localized)
+                AlertManager.showAlert(on: self, title: "alert_error_title".localized, message: "alert_exists_msg".localized)
             } else {
-                self.viewModel.saveUserToCoreData()
+                self.viewModel.saveUser()
                 self.performSegue(withIdentifier: "navigateToProfile", sender: self)
             }
         }
@@ -132,15 +141,6 @@ class RegistrationVC: UIViewController {
         let isValid = viewModel.isFormValid
         let title = "btn_register".localized
         registerButttonView.updateState(isEnabled: isValid, title: title)
-    }
-
-    private func setupAgreementLabel() {
-        let fullText = "reg_terms_full".localized
-        let linkText = "reg_terms_link".localized
-        agreementLabel.attributedText = fullText.toClickableText(linkText: linkText)
-        agreementLabel.isUserInteractionEnabled = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTermsTap(_:)))
-        agreementLabel.addGestureRecognizer(tapGesture)
     }
 
     private func validate(textField: UITextField, isSilent: Bool) {
@@ -171,12 +171,6 @@ class RegistrationVC: UIViewController {
 
             default: break
         }
-    }
-
-    private func setupDatePicker() {
-        userdob.isUserInteractionEnabled = true
-        userdob.textField.tintColor = .clear
-        userdob.textField.setupDatePicker(target: self, doneAction: #selector(donePressed))
     }
 
     @objc private func donePressed() {

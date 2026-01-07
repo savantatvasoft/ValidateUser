@@ -9,6 +9,7 @@ struct ValidationResult {
 
 class RegistrationViewModel {
 
+    private let repository = UserRepository()
     var user = Registration()
 
     var isFormValid: Bool {
@@ -61,29 +62,14 @@ class RegistrationViewModel {
     }
 
     func checkUserExists(completion: @escaping (Bool) -> Void) {
-        let context = CoreDataManager.shared.context
-        let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "name == %@ OR email == %@", user.name, user.email)
-        do {
-            let count = try context.count(for: fetchRequest)
-            completion(count > 0)
-        } catch {
-            print("Fetch error: \(error)")
-            completion(false)
-        }
+        completion(repository.userExists(
+            name: user.name,
+            email: user.email
+        ))
     }
 
-    func saveUserToCoreData() {
-        let context = CoreDataManager.shared.context
-        let newUser = UserEntity(context: context)
-        newUser.name = user.name
-        newUser.email = user.email
-        newUser.phone = user.phone
-        newUser.dob = user.dob
-        newUser.linkedinUrl = user.linkedinUrl
-        newUser.userDescription = user.description
-        newUser.userImage = user.userImage
-        CoreDataManager.shared.saveContext()
+    func saveUser() {
+        repository.save(user: user)
     }
 
     func updateUserImage(_ image: UIImage) {

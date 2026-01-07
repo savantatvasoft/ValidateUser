@@ -38,17 +38,4 @@ class CoreDataManager {
             }
         }
     }
-
-    func fetchUserDetails(email: String) -> UserEntity? {
-            let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "email == %@", email)
-
-            do {
-                let results = try context.fetch(fetchRequest)
-                return results.first
-            } catch {
-                print("Error fetching user: \(error)")
-                return nil
-            }
-        }
 }
