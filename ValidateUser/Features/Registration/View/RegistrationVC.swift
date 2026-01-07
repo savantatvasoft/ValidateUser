@@ -10,7 +10,6 @@ class RegistrationVC: UIViewController {
     @IBOutlet weak var userEmail: InputField!
     @IBOutlet weak var userdob: InputField!
     @IBOutlet weak var userPhonenumber: InputField!
-
     @IBOutlet weak var userLinkedin: InputField!
     @IBOutlet weak var scrollview: UIScrollView!
     @IBOutlet weak var userDescriptionTextView: UITextView!
@@ -67,6 +66,7 @@ class RegistrationVC: UIViewController {
         userLinkedin.textField.delegate = self
         userDescriptionTextView.delegate = self
         userDescriptionTextView.isScrollEnabled = false
+        userDescriptionTextView.textContainer.lineFragmentPadding = 0
         userLinkedin.textField.clearButtonMode = .whileEditing
         updatePlaceholderVisibility()
 
