@@ -20,10 +20,10 @@ extension BorderStyling where Self: UIView {
         layer.cornerRadius = cornerRadiusValue
         layer.masksToBounds = cornerRadiusValue > 0
     }
-    
+
     func setupBorderTraitObservation() {
         if #available(iOS 17.0, *) {
-            registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (self: Self, previousTraitCollection: UITraitCollection) in
+            registerForTraitChanges([UITraitUserInterfaceStyle.self]) { (self: Self, _: UITraitCollection) in
                 self.applyBorderStyle()
             }
         }
@@ -35,12 +35,12 @@ class BorderedView: UIView, BorderStyling {
     @IBInspectable var borderColorValue: UIColor? { didSet { applyBorderStyle() } }
     @IBInspectable var borderWidthValue: CGFloat = 0 { didSet { applyBorderStyle() } }
     @IBInspectable var cornerRadiusValue: CGFloat = 0 { didSet { applyBorderStyle() } }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupBorderTraitObservation()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupBorderTraitObservation()
@@ -52,12 +52,12 @@ class BorderedImageView: UIImageView, BorderStyling {
     @IBInspectable var borderColorValue: UIColor? { didSet { applyBorderStyle() } }
     @IBInspectable var borderWidthValue: CGFloat = 0 { didSet { applyBorderStyle() } }
     @IBInspectable var cornerRadiusValue: CGFloat = 0 { didSet { applyBorderStyle() } }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupBorderTraitObservation()
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupBorderTraitObservation()

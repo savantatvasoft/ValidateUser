@@ -14,20 +14,16 @@ extension UITextField {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.maximumDate = Date()
-        
-        // Assign the picker to the keyboard area
         self.inputView = datePicker
 
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        
         let doneButton = UIBarButtonItem(
             title: "reg_done".localized,
             style: .plain,
             target: target,
             action: doneAction
         )
-        
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbar.setItems([flexibleSpace, doneButton], animated: false)
         self.inputAccessoryView = toolbar

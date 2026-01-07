@@ -127,13 +127,13 @@ class RegistrationVC: UIViewController {
         viewModel.updateUserImage(image)
         updateRegisterButtonState()
     }
-   
+
     private func updateRegisterButtonState() {
         let isValid = viewModel.isFormValid
         let title = "btn_register".localized
         registerButttonView.updateState(isEnabled: isValid, title: title)
     }
-    
+
     private func setupAgreementLabel() {
         let fullText = "reg_terms_full".localized
         let linkText = "reg_terms_link".localized
@@ -145,16 +145,16 @@ class RegistrationVC: UIViewController {
 
     private func validate(textField: UITextField, isSilent: Bool) {
         let text = textField.text ?? ""
-        
+
         switch textField {
             case username.textField:
                 let res = viewModel.validateName(text)
                 username.setErrorState(!isSilent && !res.isValid, errorMessage: res.error)
-                
+
             case userEmail.textField:
                 let res = viewModel.validateEmail(text)
                 userEmail.setErrorState(!isSilent && !res.isValid, errorMessage: res.error)
-            
+
             case userPhonenumber.textField:
                 let res = viewModel.validateMobile(text)
                 userPhonenumber.setErrorState(!isSilent && !res.isValid, errorMessage: res.error)
@@ -162,7 +162,7 @@ class RegistrationVC: UIViewController {
             case userdob.textField:
                 let isEmpty = text.isEmpty
                 userdob.setErrorState(!isSilent && isEmpty, errorMessage: "reg_err_dob".localized)
-            
+
             case userLinkedin.textField:
                 let isValid = viewModel.isValidURL(text)
                 userLinkedin.setErrorState(!isSilent && !isValid, errorMessage: isValid ? nil : "reg_invalid_url".localized)
@@ -172,7 +172,7 @@ class RegistrationVC: UIViewController {
             default: break
         }
     }
-    
+
     private func setupDatePicker() {
         userdob.isUserInteractionEnabled = true
         userdob.textField.tintColor = .clear
@@ -202,7 +202,7 @@ class RegistrationVC: UIViewController {
             if let url = URL(string: "reg_google".localized) { UIApplication.shared.open(url) }
         }
     }
-    
+
     @objc private func handleLinkTap() {
         let urlStr = userLinkedin.textField.text
         WebViewManager.open(urlStr: urlStr, from: self)
@@ -221,7 +221,7 @@ class RegistrationVC: UIViewController {
 
 // MARK: - Extensions
 extension RegistrationVC: UITextFieldDelegate, UITextViewDelegate {
-    
+
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if textField == userLinkedin.textField {
             let text = textField.text ?? ""

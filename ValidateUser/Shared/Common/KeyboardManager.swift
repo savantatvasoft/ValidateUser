@@ -46,7 +46,7 @@ class KeyboardManager {
         let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyboardHeight + extraPadding, right: 0)
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
-        
+
         if let activeField = viewController?.view.findFirstResponder() {
             let rect = activeField.convert(activeField.bounds, to: scrollView)
             scrollView.scrollRectToVisible(rect.insetBy(dx: 0, dy: -extraPadding), animated: true)

@@ -20,7 +20,7 @@ class RegistrationViewModel {
                 user.isTermsAccepted &&
                 user.userImage != nil
     }
-    
+
     func validateName(_ text: String?) -> ValidationResult {
         let name = text?.trimmingCharacters(in: .whitespaces) ?? ""
         if name.isEmpty { return ValidationResult(isValid: false, error: "reg_name_req".localized) }
@@ -72,7 +72,7 @@ class RegistrationViewModel {
             completion(false)
         }
     }
-    
+
     func saveUserToCoreData() {
         let context = CoreDataManager.shared.context
         let newUser = UserEntity(context: context)
@@ -85,7 +85,7 @@ class RegistrationViewModel {
         newUser.userImage = user.userImage
         CoreDataManager.shared.saveContext()
     }
-    
+
     func updateUserImage(_ image: UIImage) {
         user.userImage = image.jpegData(compressionQuality: 0.8)
     }

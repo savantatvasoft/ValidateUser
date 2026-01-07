@@ -70,12 +70,12 @@ class InputField: UIView {
     func setErrorState(_ hasError: Bool, errorMessage: String? = nil) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            
+
             self.errorText.text = errorMessage
             if hasError {
                 self.errorContainer.isHidden = false
             }
-            
+
             UIView.animate(withDuration: 0.3, animations: {
                 self.errorTopConstraint.constant = hasError ? 5 : 0
                 self.errorHeightConstraint.constant = hasError ? 30 : 0
@@ -89,7 +89,7 @@ class InputField: UIView {
                     let imageName = hasError ? Assets.warningIcon : Assets.successIcon
                     self.rightImage.image = UIImage(named: imageName)
                 }
-                
+
                 self.layoutIfNeeded()
             }, completion: { _ in
                 if !hasError {

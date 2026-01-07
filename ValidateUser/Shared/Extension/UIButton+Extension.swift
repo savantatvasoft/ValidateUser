@@ -8,14 +8,14 @@
 import UIKit
 
 extension UIButton {
-    
+
     func updateState(isEnabled: Bool, title: String) {
         self.isEnabled = isEnabled
-   
+
         UIView.animate(withDuration: 0.2) { [weak self] in
             guard let self = self else { return }
             self.alpha = isEnabled ? 1.0 : 0.5
-            
+
             if var config = self.configuration {
                 config.title = title
                 config.baseForegroundColor = .white

@@ -8,7 +8,7 @@
 import UIKit
 
 class ProfileVC: UIViewController {
-    
+
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userNameTitle: UILabel!
     @IBOutlet weak var userName: UserInput!
